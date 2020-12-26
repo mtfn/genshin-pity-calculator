@@ -1,0 +1,144 @@
+
+@font-face {
+    font-family: 'GenshinImpact';
+    src: url('title_font.ttf') format('truetype');
+}
+
+body {
+    background-color: #111018;
+    color: #d5d9e0;
+}
+
+#field {
+    width: 50%;
+    float: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+#heading {
+    text-align: center;
+    font-family: GenshinImpact;
+}
+
+h2, p {
+    font-family: Arial;
+}
+
+textarea {
+    resize: none;
+    background: #111018;
+    color: #d5d9e0;
+    display: inline-block;
+    border-radius: 7px;
+    width: 90%;
+    height: 100px;
+}
+
+#submit {
+    background-color: transparent;
+    width: 10%;
+    height: 100px;
+    border: 2px solid #d5d9e0;
+    border-radius: 7px;
+    color: #d5d9e0;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color:#d5d9e0;
+    color: #111018;
+}
+
+#banner {
+    text-transform: capitalize;
+    display: none;
+    text-align: center;
+}
+
+#results {
+    display: none;
+    overflow: auto;
+    transition-duration: 0.5s;
+}
+
+#left {
+    margin-left: 1%;
+    width: 50%;
+    float: left;
+}
+
+#right {
+    margin-right: 1%;
+    text-align: right;
+    width: 50%;
+    float: right;
+}
+
+#pie-chart {
+    width: 100%;
+    text-align: center;
+    float: right;
+}
+
+#pie-hover {
+    opacity: 1;
+    position: absolute;
+    background: rgba(0, 0, 0, .7);
+    color: white;
+    border-radius: 3px;
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+    pointer-events: none;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+td > p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#status {
+    margin-left: 1%;
+    display: none;
+}
+
+#primos > img {
+    width: 2%;
+    height: 8%;
+    vertical-align: bottom;
+}
+
+span {
+    font-weight: bolder;
+}
+
+.dontbold {
+    font-weight: normal;
+}
+
+#bar {
+    width: 70%;
+    background-color: transparent;
+    border: 3px solid #d5d9e0;
+    border-radius: 0.1em;
+}
+  
+#bar > div {
+    width: 0.6%;
+    height: 30px;
+    background-color: #00ff00;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}

@@ -1,0 +1,21 @@
+Select Wish Type:
+Character Event Wish
+
+You can check the wishes you made in the past month. Wish records are updated about one hour after the wish is made. If there is no record yet, please check again later. The times displayed below are according to your current server time. Please note any difference between the time zone of your server and the time zone of where you are located. Server time zones: 天空岛 (UTC+8); 世界树 (UTC+8); TW, HK, MO (UTC+8); Asia (UTC+8); Europe (UTC+1); America (UTC-5)
+Item Type Item Name Time Received
+Weapon
+Sharpshooter's Oath
+2020-10-24 19:47:50
+Weapon
+Cool Steel
+2020-10-24 19:47:50
+Weapon
+Black Tassel
+2020-10-24 19:47:50
+Weapon
+Thrilling Tales of Dragon Slayers
+2020-10-24 19:47:50
+Weapon
+Debate Club
+2020-10-24 19:47:50
+ 10 

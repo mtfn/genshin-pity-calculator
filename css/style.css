@@ -1,7 +1,8 @@
 
 @font-face {
     font-family: 'GenshinImpact';
-    src: url('title_font.ttf') format('truetype');
+    src: url('title_font.woff') format('woff'),
+    url('title_font.ttf') format('truetype');
 }
 
 body, #region {
@@ -20,11 +21,11 @@ body, #region {
 
 #heading {
     text-align: center;
-    font-family: GenshinImpact;
+    font-family: GenshinImpact, Arial, sans-serif;
 }
 
 h2, p {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
 }
 
 textarea {
@@ -64,6 +65,11 @@ textarea {
 #submit:hover {
     background-color:#d5d9e0;
     color: #111018;
+}
+
+a {
+    color: aqua;
+    text-decoration: none;
 }
 
 #banner {

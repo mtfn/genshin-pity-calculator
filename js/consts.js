@@ -1,6 +1,11 @@
 // Right now:
 const promoCharacter = 'Albedo'
 const promoWeapons = ['Skyward Atlas', 'Summit Shaper']
+const urls = {
+    'character event wish': 'https://genshin-impact.fandom.com/wiki/Secretum_Secretorum',
+    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/Dec_23rd_2020',
+    'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
+}
 
 // Set default region
 const utcOffset = new Date().getTimezoneOffset() * -60

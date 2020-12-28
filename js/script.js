@@ -108,7 +108,7 @@ function main(input) {
 
     // Voila
     document.getElementById('banner').style.display = 'block'
-    document.getElementById('banner').innerHTML = 'Banner: ' + banner
+    document.querySelector('#banner').innerHTML = 'Banner: <a href="' + urls[banner] + '" target="_blank">' + banner + '</a>'
     document.getElementById('results').style.display = 'flex'
     document.getElementById('status').style.display = 'block'
 

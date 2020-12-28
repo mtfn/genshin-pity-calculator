@@ -9,8 +9,8 @@ function main(input) {
     const data = input.toLowerCase().split(/[\r\n]+/g)
     data[1] = data[1].trim()
 
-    let banner = 'character event wish'
-    if(['weapon event wish', 'standard wish'].includes(data[1])) {
+    let banner = 'permanent wish'
+    if(['character event wish', 'weapon event wish'].includes(data[1])) {
         banner = data[1]
     }
 
@@ -38,6 +38,8 @@ function main(input) {
                 const dateRolled = new Date(data[data.indexOf(x) + 1].trim() + '+0000').getTime() / 1000
                 
                 // Find the right promotional weapon from the right time and check it against what was rolled
+                const weaponBanners = getWeaponBanners(document.getElementById('region').value)
+    
                 for(let i in weaponBanners) {
         
                     let bannerEnd
@@ -60,11 +62,11 @@ function main(input) {
         }
     }
 
+    // Calculate pity based on index in table and page number
     const pageNumber = parseInt(data[data.length - 1])
     if(isNaN(pageNumber)) {
         pageNumber = 1
     }
-
     const pity = 6 * (pageNumber - 1) + fiveStarIndex
 
     document.getElementById('pity').innerHTML = pity.toString()
@@ -77,6 +79,7 @@ function main(input) {
     document.getElementById('to76').innerHTML = toSoftPity.toString()
     document.querySelector('#primos > span').innerHTML = (toSoftPity * 160).toLocaleString()
 
+    // Set base rates for the user's next single pull
     if(toSoftPity === 0) {
         setBaseRate('32.4%')
 
@@ -89,44 +92,29 @@ function main(input) {
         document.querySelector('#left p:nth-of-type(3)').innerHTML = 'The base rate is usually 0.6% during pulls 1-75, 32.4% during pulls 76-89, and 100% at pull 90.'
     }
 
-
+    // Pie chart go brrrrr
     if(banner === 'character event wish') {
         document.getElementById('promonotice').innerHTML = 'Assuming that you will pull your next 5-star during this banner.<br>If you\'re planning for future banners, imagine the promotional character in ' + promoCharacter + '\'s place.'
-
-        if(promoGuarantee) {
-            config.data.datasets[0].data = [100]
-            config.data.labels = [promoCharacter]
-            config.data.datasets[0].backgroundColor = ['#000000']
-
-        } else {
-            config.data.datasets[0].data = [10, 10, 10, 10, 10, 50]
-            config.data.labels = ['Diluc', 'Qiqi', 'Mona', 'Keqing', 'Jean', promoCharacter]
-            config.data.datasets[0].backgroundColor = ['#ff5555', '#95fffa', '#50abff', '#c179ff', '#75ffaf', '#000000']
-        }
+        config.data = characterBanner(promoGuarantee)
 
     } else if(banner === 'weapon event wish') {
         document.getElementById('promonotice').innerHTML = 'Assuming that you will pull you next 5-star during this banner.<br> If you\'re planning for future banners, imagine the promotional weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.'
-    
-        if(promoGuarantee) {
-            config.data.datasets[0].data = [50, 50]
-            config.data.labels = promoWeapons
-            config.data.datasets[0].backgroundColor = ['#5bc5cd', '#efe7bb']
-
-        } else {
-            config.data.datasets[0].data = [25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 37.5, 37.5]
-            config.data.labels = ['Amos\' Bow', 'Skyward Harp', 'Lost Prayer to the Sacred Winds', 'Wolf\'s Gravestone', 'Skyward Pride', 'Primordial Jade Winged-Spear', 'Skyward Spine', 'Aquila Favonia', 'Skyward Blade'].concat(promoWeapons)
-        }
+        config.data = weaponBanner(promoGuarantee)
+        
+    } else if(banner === 'permanent wish') {
+        document.getElementById('promonotice').innerHTML = ''
+        config.data = permanentBanner
     }
 
+    // Voila
     document.getElementById('banner').style.display = 'block'
     document.getElementById('banner').innerHTML = 'Banner: ' + banner
-
-    // Voila
     document.getElementById('results').style.display = 'flex'
     document.getElementById('status').style.display = 'block'
 
+    // Oh yeah, create the chart if it doesn't exist
     if(window.myPie === undefined) {
         window.myPie = new Chart(document.getElementsByTagName('canvas')[0].getContext('2d'), config)
     }
-        window.myPie.update()
+    window.myPie.update()
 }

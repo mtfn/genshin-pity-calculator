@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf8">
     <link rel="stylesheet" href="style.css">
-    <script src="js/consts.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <script src="js/pie.js"></script>
@@ -16,8 +16,18 @@
     <div id="field">
     <textarea id="input" rows="4" cols="50"></textarea>
     <br><br>
-    <button id="submit" onclick="main(document.getElementById('input').value)">▶</button>
+
+        <div>
+            <select id="region">
+                <option value="-18000">America</option>
+                <option value="3600">Europe</option>
+                <option value="28800">Asia/SAR</option>
+                </select>
+            <button id="submit" onclick="main(document.getElementById('input').value)">▶</button>
+        </div>
+
     </div>
+    <script src="js/consts.js"></script>
 
     <h2 id="banner">Character Event Banner</h2>
     <br>

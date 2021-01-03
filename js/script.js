@@ -77,7 +77,10 @@ function main(input) {
     let toSoftPity = Math.max(hardPity - 14 - pity, 0)
 
     document.getElementById('to76').innerHTML = toSoftPity.toString()
-    document.querySelector('#primos > span').innerHTML = (toSoftPity * 160).toLocaleString()
+
+    let primos = toSoftPity * 160
+    document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
+    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
 
     // Set base rates for the user's next single pull
     if(toSoftPity === 0) {
@@ -113,8 +116,8 @@ function main(input) {
     document.getElementById('status').style.display = 'block'
 
     // Oh yeah, create the chart if it doesn't exist
-    if(window.myPie === undefined) {
-        window.myPie = new Chart(document.getElementsByTagName('canvas')[0].getContext('2d'), config)
+    if(window.pieChart === undefined) {
+        window.pieChart = new Chart(document.getElementsByTagName('canvas')[0].getContext('2d'), config)
     }
-    window.myPie.update()
+    window.pieChart.update()
 }

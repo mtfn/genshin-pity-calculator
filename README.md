@@ -1,5 +1,5 @@
 # genshin-pity-calculator
-At the moment, this project only supports *Genshin Impact* set to the English language and running on a PC.
+At the moment, this project only supports *Genshin Impact* set to the English language and running on a PC. It's also currently being worked on, so expect things to break often.
 
 ## Usage
 1. Enter the wish screen in Genshin Impact (default keybind: `F3`)
@@ -9,4 +9,4 @@ At the moment, this project only supports *Genshin Impact* set to the English la
 5. Paste the text into the calculator, selecting your server region. Click ▶ to view results.
 
 ## Installation
-Should work right out of the box. Download Chart.js and edit [index.html](index.html) accordingly if you don't like having to use a CDN.
+Should work right out of the box. Download Chart.js and edit [index.html](index.html) accordingly if you don't like CDNs.

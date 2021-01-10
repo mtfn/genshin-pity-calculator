@@ -1,9 +1,10 @@
 // Right now:
-const promoCharacter = 'Albedo'
-const promoWeapons = ['Skyward Atlas', 'Summit Shaper']
+const promoCharacter = 'Ganyu'
+const promoWeapons = ['Amos\' Bow', 'Skyward Pride']
+const promoWeaponColors = ['#c9c3d9', '#4bd7de']
 const urls = {
-    'character event wish': 'https://genshin-impact.fandom.com/wiki/Secretum_Secretorum',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/Dec_23rd_2020',
+    'character event wish': 'https://genshin-impact.fandom.com/wiki/Adrift_in_the_Harbor',
+    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-01-12',
     'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
 }
 
@@ -36,6 +37,10 @@ function getWeaponBanners(offset) {
         {
             start: 1608681600 + offset,
             promo: ['skyward atlas', 'summit shaper']
+        },
+        {
+            start: 1578844800,
+            promo: ['amos\' bow', 'skyward pride']
         }
     ]
 }
@@ -80,12 +85,27 @@ function weaponBanner(guarantee) {
 
     // 75% chance to get promo weapon
     } else {
+
+        let weapons = ['Amos\' Bow', 'Skyward Harp', 'Lost Prayer to the Sacred Winds', 'Skyward Atlas', 'Wolf\'s Gravestone', 'Skyward Pride', 'Primordial Jade Winged-Spear', 'Skyward Spine', 'Summit Shaper', 'Aquila Favonia', 'Skyward Blade']
+        let backgroundColors = ['#c9c3d9', '#d7e2dd', '#9db3be', '#5bc5cd', '#2e211f', '#4bd7de', '#4f503a', '#e8d7c4', '#ddd5ae', '#d8cec9', '#5bc5cd']
+
+        // Rearrange weapon pool based on promo weapons
+        promoWeapons.forEach(x => {
+            const index = weapons.indexOf(x)
+            if(index > -1) {
+                weapons.splice(index, 1)
+                backgroundColors.splice(index, 1)
+            }
+        })
+        weapons = weapons.concat(promoWeapons)
+        backgroundColors = backgroundColors.concat(promoWeaponColors)
+
         return {
             datasets: [{
                 data: [25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 37.5, 37.5],
-                backgroundColor: ['#c9c3d9', '#d7e2dd', '#9db3be', '#2e211f', '#4bd7de', '#4f503a', '#e8d7c4', '#d8cec9', '#eddac7', '#5bc5cd', '#efe7bb']
+                backgroundColor: backgroundColors
             }],
-            labels: ['Amos\' Bow', 'Skyward Harp', 'Lost Prayer to the Sacred Winds', 'Wolf\'s Gravestone', 'Skyward Pride', 'Primordial Jade Winged-Spear', 'Skyward Spine', 'Aquila Favonia', 'Skyward Blade'].concat(promoWeapons)
+            labels: weapons
         }
     }
 }

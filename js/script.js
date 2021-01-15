@@ -4,7 +4,7 @@ function setBaseRate(rate) {
     document.querySelector('#bar > div').style.width = rate
 }
 
-function main(input) {
+function run(input) {
 
     const data = input.toLowerCase().split(/[\r\n]+/g)
     data[1] = data[1].trim()
@@ -70,17 +70,18 @@ function main(input) {
     const pity = 6 * (pageNumber - 1) + fiveStarIndex
 
     document.getElementById('pity').innerHTML = pity.toString()
-    document.getElementById('to90').innerHTML = (hardPity - pity).toString()
+    document.getElementById('tohardpity').innerHTML = (hardPity - pity).toString()
     document.getElementById('hardpity').innerHTML = hardPity.toString()
     document.getElementById('softpity').innerHTML = (hardPity - 14).toString()
 
     let toSoftPity = Math.max(hardPity - 14 - pity, 0)
 
-    document.getElementById('to76').innerHTML = toSoftPity.toString()
+    document.getElementById('tosoftpity').innerHTML = toSoftPity.toString()
 
     let primos = toSoftPity * 160
     document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
     document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
+    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
 
     // Set base rates for the user's next single pull
     if(toSoftPity === 0) {
@@ -120,4 +121,21 @@ function main(input) {
         window.pieChart = new Chart(document.getElementsByTagName('canvas')[0].getContext('2d'), config)
     }
     window.pieChart.update()
+
+    // We're good, hide error message
+    document.getElementById('error').style.display = 'none'
+}
+
+function main(input) {
+    
+    try {
+        run(input)
+    } catch(error) {
+
+        // Show error message, hide other stuff
+        document.getElementById('error').style.display = 'block'
+        document.getElementById('banner').style.display = 'none'
+        document.getElementById('results').style.display = 'none'
+        document.getElementById('status').style.display = 'none'
+    }
 }

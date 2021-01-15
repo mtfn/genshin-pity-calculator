@@ -31,14 +31,16 @@
     <script src="js/consts.js"></script>
 
     <h2 id="banner">Banner: <a href="" target="_blank">Permanent Wish</a></h2>
+    <p id="error">Error: Double-check you copied and pasted correctly and 
+        <a href="https://github.com/forkpoweroutlet/genshin-pity-calculator/issues/new" target="_blank">let me know</a> if you think something's still wrong.</p>
     <br>
 
     <div id="results">
 
         <div id="left">
             <h2>Your pity count is <span id="pity">0</span>.</span></h2>
-            <p>That means you're <span id="to90">0</span> pulls away from your <span id="hardpity" class="dontbold">90</span>th pull: a guaranteed 5-star because of hard pity.<br>It probably won't take you that many pulls, though, because:</p>
-            <h2>Your chances will massively improve after <span id="to76">76</span> pulls.</h2>
+            <p>That means you're <span id="tohardpity">0</span> pulls away from your <span id="hardpity" class="dontbold">90</span>th pull: a guaranteed 5-star because of hard pity.<br>It probably won't take you that many pulls, though, because:</p>
+            <h2>Your chances will massively improve after <span id="tosoftpity">76</span> pulls.</h2>
             <p>This is known as "soft pity" and it starts on one's <span id="softpity" class="dontbold">76</span>th pull.</p>
             <br>
             <h2>Your next single pull has a <span id="baserate">0.6%</span> chance to be a 5-star, shown in green:</h2>
@@ -61,7 +63,10 @@
     <div id="status">
         <br>
         <h2 id="primos">You'll need <img src="img/primogem.png" height="2%" width="2%"><span>12,160</span> primogems to hit soft pity.</h2>
-        <p>That's <span id="commissions">203</span> days of daily commissions.</p>
+        <p>That's 
+            <span id="commissions">203</span> days of daily commissions, or 
+            <span id="welkinmoon">82</span> 
+            days if you also buy <a href="https://genshin-impact.fandom.com/wiki/Blessing_of_the_Welkin_Moon" target="_blank">Blessing of the Welkin Moon</a> (not including crystal bonus).</p>
         <p>It's a good idea to aim for a few hundred primogems above this, just to get comfortably into soft pity.</p>
     </div> 
 

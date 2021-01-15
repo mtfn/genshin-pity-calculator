@@ -28,6 +28,11 @@ h2, p {
     font-family: Arial, sans-serif;
 }
 
+#error {
+    text-align: center;
+    display: none;
+}
+
 textarea {
     resize: none;
     background: #111018;

@@ -96,19 +96,27 @@ function run(input) {
         document.querySelector('#left p:nth-of-type(3)').innerHTML = 'The base rate is usually 0.6% during pulls 1-75, 32.4% during pulls 76-89, and 100% at pull 90.'
     }
 
+    // Little notice
+    document.getElementById('promonotice').innerHTML = 'Assuming that you will pull your next 5-star during this banner.<br>If you\'re planning for future banners, imagine the promotional '
+
     // Pie chart go brrrrr
     if(banner === 'character event wish') {
-        document.getElementById('promonotice').innerHTML = 'Assuming that you will pull your next 5-star during this banner.<br>If you\'re planning for future banners, imagine the promotional character in ' + promoCharacter + '\'s place.'
+        document.getElementById('promonotice').innerHTML += 'character in ' + promoCharacter + '\'s place.<br><br>'
+        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + '</b> chance to be the rate-up character.'
         config.data = characterBanner(promoGuarantee)
 
     } else if(banner === 'weapon event wish') {
-        document.getElementById('promonotice').innerHTML = 'Assuming that you will pull you next 5-star during this banner.<br> If you\'re planning for future banners, imagine the promotional weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.'
+        document.getElementById('promonotice').innerHTML += 'weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>'
+        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + ' </b> chance to be one of the two promotional weapons.'
         config.data = weaponBanner(promoGuarantee)
         
     } else if(banner === 'permanent wish') {
+        document.getElementById('guarantee').innerHTML = 'Your next 5-star could be any of the ones in this banner\'s item pool.'
         document.getElementById('promonotice').innerHTML = ''
         config.data = permanentBanner
     }
+
+    document.getElementById('promonotice').innerHTML += 'Hover for details!'
 
     // Voila
     document.getElementById('banner').style.display = 'block'

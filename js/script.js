@@ -107,7 +107,7 @@ function run(input) {
 
     } else if(banner === 'weapon event wish') {
         document.getElementById('promonotice').innerHTML += 'weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>'
-        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + ' </b> chance to be a rate-up weapon.'
+        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '75%') + ' </b> chance to be a rate-up weapon.'
         config.data = weaponBanner(promoGuarantee)
         
     } else if(banner === 'permanent wish') {
@@ -145,5 +145,11 @@ function main(input) {
         document.getElementById('banner').style.display = 'none'
         document.getElementById('results').style.display = 'none'
         document.getElementById('status').style.display = 'none'
+    }
+}
+
+window.onresize = function() {
+    if(document.getElementById('status').style.display === 'block') {
+        document.getElementsByTagName('footer')[0].style.position = 'static'
     }
 }

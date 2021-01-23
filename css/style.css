@@ -24,7 +24,7 @@ body, #region {
     font-family: GenshinImpact, Arial, sans-serif;
 }
 
-h2, p {
+h2, p, small {
     font-family: Arial, sans-serif;
 }
 
@@ -159,4 +159,9 @@ span {
     text-align: center;
     line-height: 30px;
     color: white;
+}
+
+footer {
+    position: fixed;
+    bottom: 1%;
 }

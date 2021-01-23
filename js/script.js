@@ -147,3 +147,9 @@ function main(input) {
         document.getElementById('status').style.display = 'none'
     }
 }
+
+window.onresize = function() {
+    if(document.getElementById('status').style.display === 'block') {
+        document.getElementsByTagName('footer')[0].style.position = 'static'
+    }
+}

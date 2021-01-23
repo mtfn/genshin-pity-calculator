@@ -107,7 +107,7 @@ function run(input) {
 
     } else if(banner === 'weapon event wish') {
         document.getElementById('promonotice').innerHTML += 'weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>'
-        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + ' </b> chance to be a rate-up weapon.'
+        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '75%') + ' </b> chance to be a rate-up weapon.'
         config.data = weaponBanner(promoGuarantee)
         
     } else if(banner === 'permanent wish') {

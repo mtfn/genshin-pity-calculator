@@ -14,13 +14,12 @@ Chart.defaults.global.tooltips.custom = function(tooltip) {
 
         tooltip.body.map(x => x.lines).forEach(function(body) {
 
-            // Get name_of_item
+            // Get image URL
             let item = body[0]
-            item = item.substring(0, item.lastIndexOf(' '))
-            item = item.slice(0, -1).replace(/ /g, '_')
+            item = item.substring(0, item.lastIndexOf(' ') - 1)
 
-            innerHtml += '<tr><td>' + '<img src="img/items/' +
-                item + '.png" style="height: 30%;width:30%;display:inline-block;">' + '<p>' + body + '%</p></td></tr>'
+            innerHtml += '<tr><td>' + '<img src="https://rerollcdn.com/GENSHIN/' + (items[item].isCharacter ? 'Characters' : 'Weapon/NEW')
+                + '/' + item.replace(/ /g, '_') + '.png" style="height: 30%;width:30%;display:inline-block;">' + '<p>' + body + '%</p></td></tr>'
         })
         innerHtml += '</tbody>'
 

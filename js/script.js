@@ -84,7 +84,7 @@ function run(input) {
     document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
 
     // Set base rates for the user's next single pull
-    if(toSoftPity === 0) {
+    if(toSoftPity <= 1) {
         setBaseRate('32.4%')
 
     } else if(banner === 'weapon event wish') {

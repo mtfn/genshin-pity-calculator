@@ -1,8 +1,8 @@
 
 @font-face {
     font-family: 'GenshinImpact';
-    src: url('title_font.woff') format('woff'),
-    url('title_font.ttf') format('truetype');
+    src: url('assets/title_font.woff') format('woff'),
+    url('assets/title_font.ttf') format('truetype');
 }
 
 body, #region {
@@ -19,7 +19,7 @@ body, #region {
     align-items: center;
 }
 
-#heading {
+#heading, #banner {
     text-align: center;
     font-family: GenshinImpact, Arial, sans-serif;
 }

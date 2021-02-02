@@ -19,7 +19,7 @@ Chart.defaults.global.tooltips.custom = function(tooltip) {
             item = item.substring(0, item.lastIndexOf(' ') - 1)
 
             innerHtml += '<tr><td>' + '<img src="https://rerollcdn.com/GENSHIN/' + (items[item].isCharacter ? 'Characters' : 'Weapon/NEW')
-                + '/' + item.replace(/ /g, '_') + '.png">' + '<p>' + body + '%</p></td></tr>'
+                + '/' + item.replace(/ /g, '_') + '.png" onerror="this.onerror=null; this.src=\'https://static.wikia.nocookie.net/gensin-impact/images/2/2a/Weapon_Primordial_Jade_Cutter.png\'">' + '<p>' + body + '%</p></td></tr>'
         })
         innerHtml += '</tbody>'
 

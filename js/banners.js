@@ -42,7 +42,7 @@ function getWeaponBanners(offset) {
             promo: ['amos\' bow', 'skyward pride']
         },
         {
-            start: 1612310400,
+            start: 1612310400 + offset,
             promo: ['primordial jade winged-spear', 'primordial jade cutter']
         }
     ]

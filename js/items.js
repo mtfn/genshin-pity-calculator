@@ -16,11 +16,6 @@ const items = {
         "isCharacter": true
     },
 
-    "Ganyu": {
-        "color": "#000000",
-        "isCharacter": true
-    },
-
     "Jean": {
         "color": "#324651",
         "isCharacter": true
@@ -39,6 +34,11 @@ const items = {
     "Mona": {
         "color": "#423247",
         "isCharacter": true
+    },
+
+    "Primordial Jade Cutter": {
+        "color": "#2d4f36",
+        "isCharacter": false
     },
 
     "Primordial Jade Winged-Spear": {
@@ -79,6 +79,11 @@ const items = {
     "Wolf's Gravestone": {
         "color": "#2e211f",
         "isCharacter": false
+    },
+
+    "Xiao": {
+        "color": "#000000",
+        "isCharacter": true
     }
 }
 

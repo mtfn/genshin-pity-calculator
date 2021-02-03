@@ -1,9 +1,9 @@
 // Right now:
-const promoCharacter = 'Ganyu'
-const promoWeapons = ['Amos\' Bow', 'Skyward Pride']
+const promoCharacter = 'Xiao'
+const promoWeapons = ['Primordial Jade Winged-Spear', 'Primordial Jade Cutter']
 const urls = {
-    'character event wish': 'https://genshin-impact.fandom.com/wiki/Adrift_in_the_Harbor',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-01-12',
+    'character event wish': 'https://genshin-impact.fandom.com/wiki/Invitation_to_Mundane_Life',
+    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-03',
     'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
 }
 
@@ -40,6 +40,10 @@ function getWeaponBanners(offset) {
         {
             start: 1578844800,
             promo: ['amos\' bow', 'skyward pride']
+        },
+        {
+            start: 1612310400,
+            promo: ['primordial jade winged-spear', 'primordial jade cutter']
         }
     ]
 }
@@ -105,7 +109,7 @@ function weaponBanner(guarantee) {
 
         return {
             datasets: [{
-                data: [3.125, 3.125, 3.125, 3.125, 3.125, 3.125, 3.125, 3.125, 37.5, 37.5],
+                data: [25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 37.5, 37.5],
                 backgroundColor: backgroundColors
             }],
             labels: weapons
@@ -113,9 +117,25 @@ function weaponBanner(guarantee) {
     }
 }
 
-// Permanent banner
-let permanentPool = itemNames.filter(x => x !== promoCharacter)
-permanentPool = permanentPool.filter(x => !items[x].isCharacter).concat(permanentPool.filter(x => items[x].isCharacter))
+// Permanent banner (hardcoding it for now)
+const permanentPool = [
+    'Amos\' Bow',
+    'Aquila Favonia',
+    'Lost Prayer to the Sacred Winds',
+    'Primordial Jade Winged-Spear',
+    'Skyward Atlas',
+    'Skyward Blade',
+    'Skyward Harp',
+    'Skyward Pride',
+    'Skyward Spine',
+    'Wolf\'s Gravestone',
+    'Diluc',
+    'Jean',
+    'Keqing',
+    'Mona',
+    'Qiqi'
+]
+
 const permanentBanner = {
     datasets: [{
         data: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10],

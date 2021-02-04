@@ -36,7 +36,6 @@ function run(input) {
 
                 // Get when the user rolled the item, in UNIX time
                 const dateRolled = new Date(data[data.indexOf(x) + 1].trim() + '+0000').getTime() / 1000
-                console.log(dateRolled)
                 
                 // Find the right promotional weapon from the right time and check it against what was rolled
                 const weaponBanners = getWeaponBanners(document.getElementById('region').value)
@@ -51,7 +50,6 @@ function run(input) {
                     }
 
                     if(!isNaN(dateRolled) && weaponBanners[i].start <= dateRolled && dateRolled < bannerEnd) {
-                        console.log(weaponBanners[i])
                         promoGuarantee = !weaponBanners[i].promo.some(element => x.includes(element))
                         break
                     }
@@ -147,5 +145,11 @@ function main(input) {
         document.getElementById('banner').style.display = 'none'
         document.getElementById('results').style.display = 'none'
         document.getElementById('status').style.display = 'none'
+    }
+}
+
+window.onresize = function() {
+    if(document.getElementById('status').style.display === 'block') {
+        document.getElementsByTagName('footer')[0].style.position = 'static'
     }
 }

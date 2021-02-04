@@ -38,7 +38,7 @@ function getWeaponBanners(offset) {
             promo: ['skyward atlas', 'summit shaper']
         },
         {
-            start: 1578844800,
+            start: 1610474400,
             promo: ['amos\' bow', 'skyward pride']
         },
         {

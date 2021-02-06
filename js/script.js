@@ -11,6 +11,22 @@ function showResults(error) {
     document.getElementById('status').style.display = error ? 'none' : 'block'
 }
 
+function togglePity() {
+    let pityType = document.querySelector('#primos > a')
+
+    let isSoftPity = pityType.innerHTML === 'soft'
+
+    let primos = 160 * parseInt(document.getElementById((
+        isSoftPity ? 'tohardpity' : 'tosoftpity'
+    )).innerHTML)
+
+    document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
+    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
+    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
+
+    pityType.innerHTML = isSoftPity ? 'hard' : 'soft'
+}
+
 function run(input) {
 
     const data = input.toLowerCase().split(/[\r\n]+/g)

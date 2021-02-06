@@ -4,6 +4,13 @@ function setBaseRate(rate) {
     document.querySelector('#bar > div').style.width = rate
 }
 
+function showResults(error) {
+    document.getElementById('error').style.display = error ? 'block' : 'none'
+    document.getElementById('banner').style.display = error ? 'none' : 'block'
+    document.getElementById('results').style.display = error ? 'none' : 'flex'
+    document.getElementById('status').style.display = error ? 'none' : 'block'
+}
+
 function run(input) {
 
     const data = input.toLowerCase().split(/[\r\n]+/g)
@@ -84,7 +91,10 @@ function run(input) {
     document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
 
     // Set base rates for the user's next single pull
-    if(toSoftPity <= 1) {
+    if(pity >= hardPity - 1) {
+        setBaseRate('100%')
+    
+    } else if(toSoftPity <= 1) {
         setBaseRate('32.4%')
 
     } else if(banner === 'weapon event wish') {
@@ -119,19 +129,14 @@ function run(input) {
     document.getElementById('promonotice').innerHTML += 'Hover for details!'
 
     // Voila
-    document.getElementById('banner').style.display = 'block'
-    document.querySelector('#banner').innerHTML = 'Banner: <a href="' + urls[banner] + '" target="_blank">' + banner + '</a>'
-    document.getElementById('results').style.display = 'flex'
-    document.getElementById('status').style.display = 'block'
+    document.getElementById('banner').innerHTML = 'Banner: <a href="' + urls[banner] + '" target="_blank">' + banner + '</a>'
+    showResults(false)
 
     // Oh yeah, create the chart if it doesn't exist
     if(window.pieChart === undefined) {
         window.pieChart = new Chart(document.getElementsByTagName('canvas')[0].getContext('2d'), config)
     }
     window.pieChart.update()
-
-    // We're good, hide error message
-    document.getElementById('error').style.display = 'none'
 }
 
 function main(input) {
@@ -141,15 +146,6 @@ function main(input) {
     } catch(error) {
 
         // Show error message, hide other stuff
-        document.getElementById('error').style.display = 'block'
-        document.getElementById('banner').style.display = 'none'
-        document.getElementById('results').style.display = 'none'
-        document.getElementById('status').style.display = 'none'
-    }
-}
-
-window.onresize = function() {
-    if(document.getElementById('status').style.display === 'block') {
-        document.getElementsByTagName('footer')[0].style.position = 'static'
+        showResults(true)
     }
 }

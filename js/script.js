@@ -102,6 +102,7 @@ function run(input) {
     document.getElementById('tosoftpity').innerHTML = toSoftPity.toString()
 
     let primos = toSoftPity * 160
+    document.querySelector('#primos > a').innerHTML = 'soft'
     document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
     document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
     document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()

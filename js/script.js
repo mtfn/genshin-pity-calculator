@@ -45,47 +45,19 @@ function run(input) {
     let fiveStarIndex = Math.floor((data.length - 5) / 3)
     let promoGuarantee = false
 
-    for(let x of data) {
+    // First row that a 5-star was found in (might be undefined if there isn't one)
+    const fiveStar = data.find(x => x.includes('5-star'))
+    if(fiveStar !== undefined) {
 
-        // Found a 5-star?
-        if(x.includes('5-star')) {
+        // Position in table (0-5)
+        fiveStarIndex = Math.floor((data.indexOf(fiveStar) - 5) / 3)
 
-            // Position in table (0-5)
-            fiveStarIndex = Math.floor((data.indexOf(x) - 5) / 3)
-
-            // Return whether Jean, Qiqi, Keqing, Mona, or Diluc was rolled on the promo banner
-            if(banner === 'character event wish') {
-                promoGuarantee = ['jean', 'qiqi', 'keqing', 'mona', 'diluc'].some(element => x.includes(element))
-            
-            // This is a bit trickier
-            } else if(banner === 'weapon event wish') {
-
-                // Get when the user rolled the item, in UNIX time
-                const dateRolled = new Date(data[data.indexOf(x) + 1].trim() + '+0000').getTime() / 1000
-                
-                // Find the right promotional weapon from the right time and check it against what was rolled
-                const weaponBanners = getWeaponBanners(document.getElementById('region').value)
-    
-                for(let i in weaponBanners) {
-        
-                    let bannerEnd
-                    try {
-                        bannerEnd = weaponBanners[parseInt(i)+1].start
-                    } catch(error) {
-                        bannerEnd = Date.now() / 1000
-                    }
-
-                    if(!isNaN(dateRolled) && weaponBanners[i].start <= dateRolled && dateRolled < bannerEnd) {
-                        promoGuarantee = !weaponBanners[i].promo.some(element => x.includes(element))
-                        break
-                    }
-                }
-
-            }
-
-            // Quit, should there be 2 5-stars within 6 rolls of each other (I'm jealous)
-            break
-        }
+        promoGuarantee = isGuaranteed(
+            fiveStar, // Table row
+            new Date(data[data.indexOf(fiveStar) + 1].trim() + '+0000').getTime() / 1000, // Date pulled (UNIX time)
+            banner, // Banner type
+            parseInt(document.getElementById('region').value) // Region offset (server time)
+        )
     }
 
     // Calculate pity based on index in table and page number

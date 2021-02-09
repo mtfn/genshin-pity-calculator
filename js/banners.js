@@ -13,39 +13,55 @@ document.getElementById('region').value = [-18000, 3600, 28800].reduce((a, b) =>
     return Math.abs(b - utcOffset) < Math.abs(a - utcOffset) ? b : a
 }).toString()
 
-// Return weapon banners by start time and promotional banner
-function getWeaponBanners(offset) {
-    offset = parseInt(offset)
-    return [
-        {
-            start: 1601251200,
-            promo: ['amos\' bow', 'aquila favonia']
-        },
-        {
-            start: 1603216800,
-            promo: ['lost prayer to the sacred winds', 'wolf\'s gravestone']
-        },
-        {
-            start: 1605052800 + offset,
-            promo: ['skyward harp', 'memory of dust']
-        },
-        {
-            start: 1606845600,
-            promo: ['vortex vanquisher', 'the unforged']
-        },
-        {
-            start: 1608681600 + offset,
-            promo: ['skyward atlas', 'summit shaper']
-        },
-        {
-            start: 1610474400,
-            promo: ['amos\' bow', 'skyward pride']
-        },
-        {
-            start: 1612310400 + offset,
-            promo: ['primordial jade winged-spear', 'primordial jade cutter']
-        }
-    ]
+/**
+ * Determine whether the next 5-star will be guaranteed a promotional item
+ * @param {string} itemName Table row containing 5-star name
+ * @param {number} datePulled Date item pulled in UNIX time
+ * @param {string} bannerName 'character event wish', 'weapon event wish', or 'permanent wish'
+ * @param {number} utcOffset Offset from UTC (-18000 for NA, 3600 for EU, 28800 for CN)
+ * 
+ * @returns {boolean} Whether the next item is guaranteed to be a promotional item
+ */
+function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
+
+    let banner = []
+    switch(bannerName) {
+        case 'character event wish':
+            banner = [
+                { start: 1601251200, promo: ['venti']},
+                {start: 1603216800, promo: ['klee']},
+                {start: 1605052800 + utcOffset, promo: ['tartaglia']},
+                {start: 1606845600, promo: ['zhongli']},
+                {start: 1608681600 + utcOffset, promo: ['albedo']},
+                {start: 1610474400, promo: ['ganyu']},
+                {start: 1612310400 + utcOffset, promo: ['xiao']},
+                {start: 1613584800, promo: ['keqing']}
+            ]
+        break
+        case 'weapon event wish': 
+            banner = [
+                {start: 1601251200, promo: ['amos\' bow', 'aquila favonia']},
+                {start: 1603216800, promo: ['lost prayer to the sacred winds', 'wolf\'s gravestone']},
+                {start: 1605052800 + utcOffset, promo: ['skyward harp', 'memory of dust']},
+                {start: 1606845600, promo: ['vortex vanquisher', 'the unforged']},
+                {start: 1608681600 + utcOffset, promo: ['skyward atlas', 'summit shaper']},
+                {start: 1610474400, promo: ['amos\' bow', 'skyward pride']},
+                {start: 1612310400 + utcOffset, promo: ['primordial jade winged-spear', 'primordial jade cutter']},
+                {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']}
+            ]
+        break
+        default:
+            return false
+    }
+   
+    const startTimes = banner.map(x => x.start)
+
+    // Which item(s) were rated up during datePulled
+    const promoItems = banner[startTimes.indexOf(
+        startTimes.reduce((acc, cur) => datePulled >= cur ? cur : acc)
+    )].promo
+
+    return !promoItems.some(element => itemName.includes(element))
 }
 
 // Character event banner

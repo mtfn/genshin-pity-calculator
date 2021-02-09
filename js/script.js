@@ -4,11 +4,30 @@ function setBaseRate(rate) {
     document.querySelector('#bar > div').style.width = rate
 }
 
+// Show pity calculation
 function showResults(error) {
     document.getElementById('error').style.display = error ? 'block' : 'none'
     document.getElementById('banner').style.display = error ? 'none' : 'block'
     document.getElementById('results').style.display = error ? 'none' : 'flex'
     document.getElementById('status').style.display = error ? 'none' : 'block'
+}
+
+// Toggle between primogem counts for hard pity and soft pity
+function togglePity() {
+    let pityType = document.querySelector('#primos > a')
+
+    // soft -> hard, hard -> soft
+    let newPityType = ['soft', 'hard'][['hard', 'soft'].indexOf(pityType.innerHTML)]
+
+    let primos = 160 * parseInt(document.getElementById((
+        'to' + newPityType + 'pity'
+    )).innerHTML)
+
+    document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
+    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
+    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
+
+    pityType.innerHTML = newPityType
 }
 
 function run(input) {
@@ -86,6 +105,7 @@ function run(input) {
     document.getElementById('tosoftpity').innerHTML = toSoftPity.toString()
 
     let primos = toSoftPity * 160
+    document.querySelector('#primos > a').innerHTML = 'soft'
     document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
     document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
     document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()

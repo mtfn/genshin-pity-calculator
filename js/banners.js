@@ -7,12 +7,6 @@ const urls = {
     'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
 }
 
-// Set default region
-const utcOffset = new Date().getTimezoneOffset() * -60
-document.getElementById('region').value = [-18000, 3600, 28800].reduce((a, b) => {
-    return Math.abs(b - utcOffset) < Math.abs(a - utcOffset) ? b : a
-}).toString()
-
 /**
  * Determine whether the next 5-star will be guaranteed a promotional item
  * @param {string} itemName Table row containing 5-star name

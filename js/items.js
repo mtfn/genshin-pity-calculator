@@ -36,11 +36,6 @@ const items = {
         "isCharacter": true
     },
 
-    "Primordial Jade Cutter": {
-        "color": "#2d4f36",
-        "isCharacter": false
-    },
-
     "Primordial Jade Winged-Spear": {
         "color": "#4f503a",
         "isCharacter": false
@@ -75,15 +70,15 @@ const items = {
         "color": "#e8d3c0",
         "isCharacter": false
     },
+
+    'Staff of Homa': {
+        "color": "#291919",
+        "isCharacter": false
+    },
     
     "Wolf's Gravestone": {
         "color": "#2e211f",
         "isCharacter": false
-    },
-
-    "Xiao": {
-        "color": "#000000",
-        "isCharacter": true
     }
 }
 

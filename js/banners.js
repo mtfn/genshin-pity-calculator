@@ -1,9 +1,9 @@
 // Right now:
-const promoCharacter = 'Xiao'
-const promoWeapons = ['Primordial Jade Winged-Spear', 'Primordial Jade Cutter']
+const promoCharacter = 'Keqing'
+const promoWeapons = ['Wolf\'s Gravestone', 'Staff of Homa']
 const urls = {
-    'character event wish': 'https://genshin-impact.fandom.com/wiki/Invitation_to_Mundane_Life',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-03',
+    'character event wish': 'https://genshin-impact.fandom.com/wiki/Dance_of_Lanterns',
+    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-23',
     'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
 }
 
@@ -74,12 +74,12 @@ function characterBanner(guarantee) {
     // 50% to get promo character
     } else {
 
-        let eventPool = ['Diluc', 'Jean', 'Keqing', 'Mona', 'Qiqi']
+        let eventPool = ['Diluc', 'Jean', 'Mona', 'Qiqi']
         eventPool.push(promoCharacter)
 
         return {
             datasets: [{
-                data: [10, 10, 10, 10, 10, 50],
+                data: [12.5, 12.5, 12.5, 12.5, 50],
                 backgroundColor: getColors(eventPool)
             }],
             labels: eventPool

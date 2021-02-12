@@ -83,13 +83,15 @@ function run(input) {
     // Set base rates for the user's next single pull
     if(pity >= hardPity - 1) {
         setBaseRate('100%')
+        document.querySelector('#left p:nth-of-type(3)').innerHTML = 'You\'re a pull away from hard pity, so your next pull will be a 5-star.'
     
     } else if(toSoftPity <= 1) {
         setBaseRate('32.4%')
+        document.querySelector('#left p:nth-of-type(3)').innerHTML = 'You\'re in soft pity right now; keep making single pulls until you get your 5-star.'
 
     } else if(banner === 'weapon event wish') {
         setBaseRate('0.7%')
-        document.querySelector('#left p:nth-of-type(3)').innerHTML = 'The base rate is usually 0.7% during pulls 1-65, 32.4% during pulls 66-79, and 100% at pull 80.'
+        document.querySelector('#left p:nth-of-type(3)').innerHTML = 'The weapon banner base rate is usually 0.7% during pulls 1-65, 32.4% during pulls 66-79, and 100% at pull 80.'
 
     } else {
         setBaseRate('0.6%')

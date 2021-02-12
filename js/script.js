@@ -14,12 +14,14 @@ function showResults(error) {
 
 // Toggle between primogem counts for hard pity and soft pity
 function togglePity() {
-    let pityType = document.querySelector('#primos > a')
+    const pityType = document.querySelector('#primos > a')
 
     // soft -> hard, hard -> soft
-    let newPityType = ['soft', 'hard'][['hard', 'soft'].indexOf(pityType.innerHTML)]
+    const newPityType = ['soft', 'hard'][Math.max(0,
+        ['hard', 'soft'].indexOf(pityType.innerHTML)
+    )]
 
-    let primos = 160 * parseInt(document.getElementById((
+    const primos = 160 * parseInt(document.getElementById((
         'to' + newPityType + 'pity'
     )).innerHTML)
 
@@ -42,30 +44,26 @@ function run(input) {
 
     const hardPity = banner === 'weapon event wish' ? 80 : 90
 
-    let fiveStarIndex = Math.floor((data.length - 5) / 3)
+    let tableRow = Math.floor((data.length - 5) / 3)
     let promoGuarantee = false
 
-    // First row that a 5-star was found in (might be undefined if there isn't one)
-    const fiveStar = data.find(x => x.includes('5-star'))
-    if(fiveStar !== undefined) {
+    // Index in data of first 5-star was found in (might be -1 if there isn't one)
+    const fiveStarPos = data.findIndex(x => x.includes('5-star'))
+    if(fiveStarPos >= 0) {
 
         // Position in table (0-5)
-        fiveStarIndex = Math.floor((data.indexOf(fiveStar) - 5) / 3)
+        tableRow = Math.floor((fiveStarPos - 5) / 3)
 
         promoGuarantee = isGuaranteed(
-            fiveStar, // Table row
-            new Date(data[data.indexOf(fiveStar) + 1].trim() + '+0000').getTime() / 1000, // Date pulled (UNIX time)
+            data[fiveStarPos], // Table row
+            new Date(data[fiveStarPos + 1].trim() + '+0000').getTime() / 1000, // Date pulled (UNIX time)
             banner, // Banner type
             parseInt(document.getElementById('region').value) // Region offset (server time)
         )
     }
 
     // Calculate pity based on index in table and page number
-    const pageNumber = parseInt(data[data.length - 1])
-    if(isNaN(pageNumber)) {
-        pageNumber = 1
-    }
-    const pity = 6 * (pageNumber - 1) + fiveStarIndex
+    const pity = tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6
 
     document.getElementById('pity').innerHTML = pity.toString()
     document.getElementById('tohardpity').innerHTML = (hardPity - pity).toString()
@@ -101,21 +99,25 @@ function run(input) {
     // Little notice
     document.getElementById('promonotice').innerHTML = 'Assuming that you will pull your next 5-star during this banner.<br>If you\'re planning for future banners, imagine the promotional '
 
-    // Pie chart go brrrrr
-    if(banner === 'character event wish') {
-        document.getElementById('promonotice').innerHTML += 'character in ' + promoCharacter + '\'s place.<br><br>'
-        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + '</b> chance to be the rate-up character.'
-        config.data = characterBanner(promoGuarantee)
+    // Pie chart go brrrrr (also tell user about rate-up guarantee etc)
+    switch(banner) {
 
-    } else if(banner === 'weapon event wish') {
-        document.getElementById('promonotice').innerHTML += 'weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>'
-        document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '75%') + ' </b> chance to be a rate-up weapon.'
-        config.data = weaponBanner(promoGuarantee)
-        
-    } else if(banner === 'permanent wish') {
-        document.getElementById('guarantee').innerHTML = 'Your next 5-star could be any of the ones in this banner\'s item pool.'
-        document.getElementById('promonotice').innerHTML = ''
-        config.data = permanentBanner
+        case 'character event wish':
+            document.getElementById('promonotice').innerHTML += 'character in ' + promoCharacter + '\'s place.<br><br>'
+            document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + '</b> chance to be the rate-up character.'
+            config.data = characterBanner(promoGuarantee)
+            break
+
+        case 'weapon event wish':
+            document.getElementById('promonotice').innerHTML += 'weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>'
+            document.getElementById('guarantee').innerHTML = 'Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '75%') + ' </b> chance to be a rate-up weapon.'
+            config.data = weaponBanner(promoGuarantee)
+            break
+
+        default:
+            document.getElementById('guarantee').innerHTML = 'Your next 5-star could be any of the ones in this banner\'s item pool.'
+            document.getElementById('promonotice').innerHTML = ''
+            config.data = permanentBanner
     }
 
     document.getElementById('promonotice').innerHTML += 'Hover for details!'

@@ -22,7 +22,7 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
     switch(bannerName) {
         case 'character event wish':
             banner = [
-                { start: 1601251200, promo: ['venti']},
+                {start: 1601251200, promo: ['venti']},
                 {start: 1603216800, promo: ['klee']},
                 {start: 1605052800 + utcOffset, promo: ['tartaglia']},
                 {start: 1606845600, promo: ['zhongli']},
@@ -87,6 +87,25 @@ function characterBanner(guarantee) {
     }
 }
 
+// Permanent banner items (Will help for weapon banner)
+const permanentPool = [
+    'Amos\' Bow',
+    'Aquila Favonia',
+    'Lost Prayer to the Sacred Winds',
+    'Primordial Jade Winged-Spear',
+    'Skyward Atlas',
+    'Skyward Blade',
+    'Skyward Harp',
+    'Skyward Pride',
+    'Skyward Spine',
+    'Wolf\'s Gravestone',
+    'Diluc',
+    'Jean',
+    'Keqing',
+    'Mona',
+    'Qiqi'
+]
+
 // Weapon event banner
 function weaponBanner(guarantee) {
 
@@ -117,9 +136,10 @@ function weaponBanner(guarantee) {
         weapons = weapons.concat(promoWeapons)
         backgroundColors = backgroundColors.concat(getColors(promoWeapons))
 
+        let numNotRatedUp = permanentPool.filter(x => !promoWeapons.includes(x) && !items[x].isCharacter).length
         return {
             datasets: [{
-                data: [25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 25/9, 37.5, 37.5],
+                data: (new Array(numNotRatedUp).fill(25/numNotRatedUp)).concat([37.5, 37.5]),
                 backgroundColor: backgroundColors
             }],
             labels: weapons
@@ -127,25 +147,7 @@ function weaponBanner(guarantee) {
     }
 }
 
-// Permanent banner (hardcoding it for now)
-const permanentPool = [
-    'Amos\' Bow',
-    'Aquila Favonia',
-    'Lost Prayer to the Sacred Winds',
-    'Primordial Jade Winged-Spear',
-    'Skyward Atlas',
-    'Skyward Blade',
-    'Skyward Harp',
-    'Skyward Pride',
-    'Skyward Spine',
-    'Wolf\'s Gravestone',
-    'Diluc',
-    'Jean',
-    'Keqing',
-    'Mona',
-    'Qiqi'
-]
-
+// Permanent banner
 const permanentBanner = {
     datasets: [{
         data: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10],

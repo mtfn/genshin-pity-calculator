@@ -58,7 +58,7 @@ let config = {
             'Mona',
             'Keqing',
             'Jean',
-            'Albedo'
+            'Promotional Character'
         ]
     },
     options: {

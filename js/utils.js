@@ -22,11 +22,12 @@ function Values(pity, banner) {
 
 /**
  * Set base rate for next single pull
- * @param {string} rate n%
+ * @param {number} rate Number 0-1
  */
 function setBaseRate(rate) {
-    document.getElementById('baserate').innerHTML = rate
-    document.querySelector('#bar > div').style.width = rate
+    const baseRate = rate.toLocaleString('en-US', {style: 'percent', maximumFractionDigits: 3})
+    document.getElementById('baserate').innerHTML = baseRate
+    document.querySelector('#bar > div').style.width = baseRate
 }
 
 /**

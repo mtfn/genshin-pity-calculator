@@ -1,37 +1,3 @@
-// Set the % of rolling a 5*
-function setBaseRate(rate) {
-    document.getElementById('baserate').innerHTML = rate
-    document.querySelector('#bar > div').style.width = rate
-}
-
-// Show pity calculation
-function showResults(error) {
-    document.getElementById('error').style.display = error ? 'block' : 'none'
-    document.getElementById('banner').style.display = error ? 'none' : 'block'
-    document.getElementById('results').style.display = error ? 'none' : 'flex'
-    document.getElementById('status').style.display = error ? 'none' : 'block'
-}
-
-// Toggle between primogem counts for hard pity and soft pity
-function togglePity() {
-    const pityType = document.querySelector('#primos > a')
-
-    // soft -> hard, hard -> soft
-    const newPityType = ['soft', 'hard'][Math.max(0,
-        ['hard', 'soft'].indexOf(pityType.innerHTML)
-    )]
-
-    const primos = 160 * parseInt(document.getElementById((
-        'to' + newPityType + 'pity'
-    )).innerHTML)
-
-    document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
-    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
-    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
-
-    pityType.innerHTML = newPityType
-}
-
 function run(input) {
 
     const data = input.toLowerCase().split(/[\r\n]+/g)
@@ -41,8 +7,6 @@ function run(input) {
     if(['character event wish', 'weapon event wish'].includes(data[1])) {
         banner = data[1]
     }
-
-    const hardPity = banner === 'weapon event wish' ? 80 : 90
 
     let tableRow = Math.floor((data.length - 5) / 3)
     let promoGuarantee = false
@@ -62,30 +26,15 @@ function run(input) {
         )
     }
 
-    // Calculate pity based on index in table and page number
-    const pity = tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6
-
-    document.getElementById('pity').innerHTML = pity.toString()
-    document.getElementById('tohardpity').innerHTML = (hardPity - pity).toString()
-    document.getElementById('hardpity').innerHTML = hardPity.toString()
-    document.getElementById('softpity').innerHTML = (hardPity - 14).toString()
-
-    let toSoftPity = Math.max(hardPity - 14 - pity, 0)
-
-    document.getElementById('tosoftpity').innerHTML = toSoftPity.toString()
-
-    let primos = toSoftPity * 160
-    document.querySelector('#primos > a').innerHTML = 'soft'
-    document.querySelector('#primos > span').innerHTML = primos.toLocaleString()
-    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
-    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
+    // Calculate pity based on position in table & page number
+    const values = new Values(tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6, banner)
 
     // Set base rates for the user's next single pull
-    if(pity >= hardPity - 1) {
+    if(values.pity >= values.hardpity - 1) {
         setBaseRate('100%')
         document.querySelector('#left p:nth-of-type(3)').innerHTML = 'You\'re a pull away from hard pity, so your next pull will be a 5-star.'
     
-    } else if(toSoftPity <= 1) {
+    } else if(values.tosoftpity <= 1) {
         setBaseRate('32.4%')
         document.querySelector('#left p:nth-of-type(3)').innerHTML = 'You\'re in soft pity right now; keep making single pulls until you get your 5-star.'
 

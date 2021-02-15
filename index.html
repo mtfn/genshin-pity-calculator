@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf8">
-    <link rel="stylesheet" href="style.css">
 
+    <!-- Load scripts -->
     <script src="js/items.js"></script>
     <script src="js/banners.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"  integrity="sha256-t9UJPrESBeG2ojKTIcFLPGF7nHi2vEc7f5A2KpH/UBU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha256-t9UJPrESBeG2ojKTIcFLPGF7nHi2vEc7f5A2KpH/UBU=" crossorigin="anonymous"></script>
     <script src="js/pie.js"></script>
   
+    <!-- CSS and favicon -->
+    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Basic metadata -->
     <title>Genshin Impact Pity Calculator</title>
     <meta name="title" content="Genshin Impact Pity Calculator">
     <meta name="description" content="Helping you navigate Genshin Impact's gacha system and plan your wishes to build amazing teams.">
@@ -22,16 +26,23 @@
 </head>
 
 <body>
+
+    <!-- Keep it at the top -->
     <div id="heading">
     <h1>Genshin Impact Pity Calculator (in development)</h1>
-    <p>Under the banner for which you want to calculate pity, select History and click the right arrow until you see the last 5-star you pulled.<br>If you haven't pulled a 5-star yet, click as far right as you can until you see your first few wishes in that banner.<br>Then hit Ctrl+A followed by Ctrl+C and paste everything in this box:</p>
+    <p>Under the banner for which you want to calculate pity, select History and click the right arrow until you see the last 5-star you pulled.
+        <br>If you haven't pulled a 5-star yet, click as far right as you can until you see your first few wishes in that banner.
+        <br>Then hit Ctrl+A followed by Ctrl+C and paste everything in this box:</p>
     </div>
 
+    <!-- Input field -->
     <div id="field">
     <textarea id="input" rows="4" cols="50"></textarea>
     <br><br>
 
         <div>
+
+            <!-- Numbers correspond to offset in seconds from UTC -->
             <select id="region">
                 <option value="-18000">America</option>
                 <option value="3600">Europe</option>
@@ -40,57 +51,87 @@
             <button id="submit" onclick="main(document.getElementById('input').value)">▶</button>
         </div>
     </div>
+
+    <!-- Disclaimer -->
     <small><p>Images and font: © All rights reserved by miHoYo.
-        This <a href="https://github.com/forkpoweroutlet/genshin-pity-calculator" target="_blank">open-source</a> fan project is not affiliated with or endorsed by miHoYo Co., Ltd.
+        This <a href="https://github.com/forkpoweroutlet/genshin-pity-calculator" target="_blank">open-source</a> 
+        fan project is not affiliated with or endorsed by miHoYo Co., Ltd.<br>
     </p></small>
     
+    <!-- Autodetect region with JavaScript -->
     <script>
-        // Set UTC offset
         const utcOffset = new Date().getTimezoneOffset() * -60
         document.getElementById('region').value = [-18000, 3600, 28800].reduce((a, b) => {
             return Math.abs(b - utcOffset) < Math.abs(a - utcOffset) ? b : a
         }).toString()
     </script>
 
-    <h2 id="banner">Banner: <a href="" target="_blank">Permanent Wish</a></h2>
+    <!-- Default to permanent banner -->
+    <h2 id="banner">Banner: <a href="https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation" target="_blank">Permanent Wish</a></h2>
+    
+    <!-- Hide if successful -->
     <p id="error">
         <br><br><br>
         Error: Double-check that you copied and pasted correctly and 
         <a href="https://github.com/forkpoweroutlet/genshin-pity-calculator/issues/new" target="_blank">let me know</a> if you still think something's wrong.</p>
     <br>
 
+    <!-- Show if successful -->
     <div id="results">
 
+        <!-- Pity info and base rate -->
         <div id="left">
             <h2>Your pity count is <span id="pity">0</span>.</span></h2>
-            <p>That means you're <span id="tohardpity">0</span> pulls away from your <span id="hardpity" class="dontbold">90</span>th pull: a guaranteed 5-star because of hard pity.<br>It probably won't take you that many pulls, though, because:</p>
+
+            <!-- Tell of hard pity but why it isn't really important -->
+            <p>That means you're <span id="tohardpity">0</span> pulls away from your 
+                <span id="hardpity" class="dontbold">90</span>
+                th pull: a guaranteed 5-star because of hard pity.
+                <br>It probably won't take you that many pulls, though, because:</p>
+
+            <!-- Soft pity -->
             <h2>Your chances will massively improve after <span id="tosoftpity">76</span> pulls.</h2>
             <p>This is known as "soft pity" and it starts on one's <span id="softpity" class="dontbold">76</span>th pull.</p>
             <br>
+
+            <!-- Rate of next single pull + bar to visualize -->
             <h2>Your next single pull has a <span id="baserate">0.6%</span> chance to be a 5-star, shown in green:</h2>
             <div id="bar"><div></div></div>
             <p>The base rate is usually 0.6% during pulls 1-75, 32.4% during pulls 76-89, and 100% at pull 90.</p>
         </div>
 
+        <!-- Pie chart and clarification -->
         <div id="right">
             <h2 id="guarantee">Who or what will your next five-star be when you get it? Hover for details.</h2>
             <div id="pie-chart" style="width: 30%;">
                 <canvas width="30%" height="30%"></canvas>
+
+                <!-- Chart.js tooltip -->
                 <div id="pie-hover">
                     <table></table>
                 </div>
             </div>
+
+            <!-- Promotional banners are temporary -->
             <p id="promonotice">Assuming that you will pull your next 5-star during this banner.<br>If you're planning for future banners, imagine the promotional character in <span>Promotional Character</span>'s place.</p>
         </div>
     </div>
 
+    <!-- 
+    1 pull = 160 primogems
+    1 day of commissions = 60 primogems
+    1 day of commissions + welkin moon = 150 primogems -->
     <div id="status">
         <br>
         <h2>You'll need <span id="primogems">12,160</span> primogems to hit <a href="javascript:;" onclick="togglePity()" id="pitytype">soft</a> pity.</h2>
         <p>That's 
-            <span id="commissions">203</span> days of daily commissions, or 
+            <span id="commissions">203</span> 
+            days of daily commissions, or 
+
             <span id="welkinmoon">82</span> 
-            days if you also buy <a href="https://genshin-impact.fandom.com/wiki/Blessing_of_the_Welkin_Moon" target="_blank">Blessing of the Welkin Moon</a> (not including crystal bonus).</p>
+            days if you also buy 
+            <a href="https://genshin-impact.fandom.com/wiki/Blessing_of_the_Welkin_Moon" target="_blank">Blessing of the Welkin Moon</a>
+            (not including crystal bonus).</p>
     </div> 
 </body>
 </html>

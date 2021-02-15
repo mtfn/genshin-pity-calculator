@@ -5,11 +5,37 @@
     url('assets/title_font.ttf') format('truetype');
 }
 
+/* General rules */
 body, #region {
     background-color: #111018;
     color: #d5d9e0;
 }
+h2, p, small {
+    font-family: Arial, sans-serif;
+}
+a {
+    color: aqua;
+    text-decoration: none;
+}
+span {
+    font-weight: bolder;
+}
+.dontbold {
+    font-weight: normal;
+}
 
+/* Page header and banner */
+#heading, #banner {
+    text-align: center;
+    font-family: GenshinImpact, Arial, sans-serif;
+}
+#banner {
+    text-transform: capitalize;
+    display: none;
+    text-align: center;
+}
+
+/* User input field */
 #field {
     width: 50%;
     float: center;
@@ -18,30 +44,6 @@ body, #region {
     display: flex;
     align-items: center;
 }
-
-#heading, #banner {
-    text-align: center;
-    font-family: GenshinImpact, Arial, sans-serif;
-}
-
-h2, p, small {
-    font-family: Arial, sans-serif;
-}
-
-small {
-    margin-top: 0px;
-    text-align: center;
-}
-
-small > p {
-    margin-top: 0.3%;
-}
-
-#error {
-    text-align: center;
-    display: none;
-}
-
 textarea {
     resize: none;
     background: #111018;
@@ -51,7 +53,6 @@ textarea {
     width: 90%;
     height: 100px;
 }
-
 #region {
     width: 100%;
     float: center;
@@ -59,6 +60,7 @@ textarea {
     height: 20px;
 }
 
+/* Submit button */
 #submit {
     background-color: transparent;
     width: 100%;
@@ -75,48 +77,55 @@ textarea {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-
 #submit:hover {
     background-color:#d5d9e0;
     color: #111018;
 }
 
-a {
-    color: aqua;
-    text-decoration: none;
-}
 
-#banner {
-    text-transform: capitalize;
-    display: none;
+/* Disclaimer */
+small {
+    margin-top: 0px;
     text-align: center;
 }
+small > p {
+    margin-top: 0.3%;
+}
 
+/* All this hidden by default */
+#error {
+    text-align: center;
+    display: none;
+}
 #results {
     display: none;
     overflow: auto;
     transition-duration: 0.5s;
 }
+#status {
+    margin-left: 1%;
+    display: none;
+}
 
+/* Pity info and pie chart */
 #left {
     margin-left: 1%;
     width: 50%;
     float: left;
 }
-
 #right {
     margin-right: 1%;
     text-align: right;
     width: 50%;
     float: right;
 }
-
 #pie-chart {
     width: 100%;
     text-align: center;
     float: right;
 }
 
+/* Chart.js tooltip */
 #pie-hover {
     opacity: 1;
     position: absolute;
@@ -129,38 +138,23 @@ a {
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
 }
-
 td > p {
     margin-top: 0px;
     margin-bottom: 0px;
 }
-
-#status {
-    margin-left: 1%;
-    display: none;
-}
-
 img {
     display: inline-block;
     width: 50px;
     height: 50px;
 }
 
-span {
-    font-weight: bolder;
-}
-
-.dontbold {
-    font-weight: normal;
-}
-
+/* Base rate of next single pull visualization */
 #bar {
     width: 70%;
     background-color: transparent;
     border: 3px solid #d5d9e0;
     border-radius: 0.1em;
 }
-  
 #bar > div {
     width: 0.6%;
     height: 30px;

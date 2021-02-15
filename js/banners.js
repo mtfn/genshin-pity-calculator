@@ -58,7 +58,10 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
     return !promoItems.some(element => itemName.includes(element))
 }
 
-// Character event banner
+/**
+ * Character event banner
+ * @param {boolean} guarantee Whether the next 5-star is guaranteed to be a rate-up
+ */
 function characterBanner(guarantee) {
 
     // 100% to get promo character
@@ -106,7 +109,10 @@ const permanentPool = [
     'Qiqi'
 ]
 
-// Weapon event banner
+/**
+ * Weapon event banner
+ * @param {boolean} guarantee Whether the next 5-star is guaranteed to be a rate-up
+ */
 function weaponBanner(guarantee) {
 
     // 100% chance to get promo weapon

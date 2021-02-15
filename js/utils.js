@@ -52,13 +52,14 @@ function togglePity() {
         ['hard', 'soft'].indexOf(pityType.innerHTML)
     )]
 
+    // Primogems needed to hit hard or soft pity
     const primos = 160 * parseInt(document.getElementById((
         'to' + newPityType + 'pity'
     )).innerHTML)
 
+    // Display on page
     document.getElementById('primogems').innerHTML = primos.toLocaleString('en-US')
     document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
     document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
-
     pityType.innerHTML = newPityType
 }

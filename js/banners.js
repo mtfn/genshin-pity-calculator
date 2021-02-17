@@ -1,9 +1,9 @@
 // Right now:
 const promoCharacter = 'Keqing'
-const promoWeapons = ['Wolf\'s Gravestone', 'Staff of Homa']
+const promoWeapons = ['Primordial Jade Cutter', 'Primordial Jade Winged-Spear']
 const urls = {
     'character event wish': 'https://genshin-impact.fandom.com/wiki/Dance_of_Lanterns',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-23',
+    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-03',
     'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
 }
 

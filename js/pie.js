@@ -1,10 +1,10 @@
 Chart.defaults.global.tooltips.custom = function(tooltip) {
     // Tooltip Element
-    let hoverDiv = document.getElementById('pie-hover')
+    const $hoverDiv = $('#pie-hover')
 
     // Hide if no tooltip
     if (tooltip.opacity === 0) {
-        hoverDiv.style.opacity = 0
+        $hoverDiv.css('opacity', 0)
         return
     }
 
@@ -24,18 +24,18 @@ Chart.defaults.global.tooltips.custom = function(tooltip) {
         })
         innerHtml += '</tbody>'
 
-        hoverDiv.querySelector('table').innerHTML = innerHtml
+        $('#pie-hover table').html(innerHtml)
     }
 
-    // Yeah don't touch this
-    hoverDiv.style.opacity = 1
-    hoverDiv.style.left = this._chart.canvas.offsetLeft + tooltip.caretX + 'px'
-    hoverDiv.style.top = this._chart.canvas.offsetTop + tooltip.caretY + 'px'
-    
-    hoverDiv.style.fontFamily = tooltip._bodyFontFamily
-    hoverDiv.style.fontSize = tooltip.bodyFontSize
-    hoverDiv.style.fontStyle = tooltip._bodyFontStyle
-    hoverDiv.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px'
+    $hoverDiv.css({
+        'opacity': 1,
+        'left': this._chart.canvas.offsetLeft + tooltip.caretX + 'px',
+        'top': this._chart.canvas.offsetTop + tooltip.caretY + 'px',
+        'font-family': tooltip._bodyFontFamily,
+        'font-size': tooltip.bodyFontSize,
+        'font-style': tooltip._bodyFontStyle,
+        'padding': tooltip.yPadding + 'px ' + tooltip.xPadding + 'px'
+    })
 }
 
 let config = {

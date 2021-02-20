@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf8">
-
-    <!-- Load scripts -->
-    <script src="src/items.js"></script>
-    <script src="src/banners.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <script src="src/utils.js"></script>
-    <script src="src/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha256-t9UJPrESBeG2ojKTIcFLPGF7nHi2vEc7f5A2KpH/UBU=" crossorigin="anonymous"></script>
-    <script src="src/pie.js"></script>
   
     <!-- CSS and favicon -->
     <link rel="stylesheet" href="style.css">
@@ -58,17 +49,6 @@
         This <a href="https://github.com/forkpoweroutlet/genshin-pity-calculator" target="_blank">open-source</a> 
         fan project is not affiliated with or endorsed by miHoYo Co., Ltd.<br>
     </p></small>
-    
-    <!-- Autodetect region with JavaScript + bind submit button -->
-    <script>
-        const utcOffset = new Date().getTimezoneOffset() * -60
-        $('#region').val(
-            [-18000, 3600, 28800].reduce((a, b) => {
-                return Math.abs(b - utcOffset) < Math.abs(a - utcOffset) ? b : a
-            }).toString()
-        )
-        $('#submit').click(main)
-    </script>
 
     <!-- Default to permanent banner -->
     <h2 id="banner">Banner: <a href="https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation" target="_blank">Permanent Wish</a></h2>
@@ -127,7 +107,7 @@
     1 day of commissions + welkin moon = 150 primogems -->
     <div id="status">
         <br>
-        <h2>You'll need <span id="primogems">12,160</span> primogems to hit <a href="javascript:;" onclick="togglePity()" id="pitytype">soft</a> pity.</h2>
+        <h2>You'll need <span id="primogems">12,160</span> primogems to hit <a href="javascript:;" id="pitytype">soft</a> pity.</h2>
         <p>That's 
             <span id="commissions">203</span> 
             days of daily commissions, or 
@@ -137,5 +117,8 @@
             <a href="https://genshin-impact.fandom.com/wiki/Blessing_of_the_Welkin_Moon" target="_blank">Blessing of the Welkin Moon</a>
             (not including crystal bonus).</p>
     </div> 
+
+    <!-- Autodetect region with JavaScript + bind submit button -->
+    <script src="build/main.js"></script>
 </body>
 </html>

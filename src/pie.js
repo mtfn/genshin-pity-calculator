@@ -1,4 +1,7 @@
-Chart.defaults.global.tooltips.custom = function(tooltip) {
+import $ from 'cash-dom'
+import items from './data/items.json'
+
+function tooltip(tooltip) {
     // Tooltip Element
     const $hoverDiv = $('#pie-hover')
 
@@ -38,7 +41,7 @@ Chart.defaults.global.tooltips.custom = function(tooltip) {
     })
 }
 
-let config = {
+const config = {
     type: 'pie',
     data: {
         datasets: [{
@@ -71,3 +74,5 @@ let config = {
         }
     }
 }
+
+export { tooltip, config }

@@ -1,3 +1,5 @@
+import $ from 'cash-dom'
+
 /**
  * Numerical values
  * @param {number} pity Pulls since last 5-star
@@ -59,3 +61,5 @@ function togglePity() {
     $('#welkinmoon').html(Math.ceil(primos / 150).toString())
     $('#pitytype').html(newPityType)
 }
+
+export {Values, setBaseRate, showResults, togglePity}

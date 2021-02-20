@@ -1,3 +1,9 @@
+import $ from 'cash-dom'
+import Chart from 'chart.js'
+import { Values, setBaseRate, showResults, togglePity } from './utils'
+import { promo, urls, isGuaranteed, characterBanner, weaponBanner, permanentBanner } from './banners'
+import { config } from './pie'
+
 function run(input) {
 
     // Lowercase -> Array, split line by line
@@ -62,24 +68,22 @@ function run(input) {
     switch(banner) {
 
         case 'character event wish':
-            $('#promonotice').append('character in ' + promoCharacter + '\'s place.<br><br>')
+            $('#promonotice').append('character in ' + promo.character + '\'s place.<br><br>Hover for details!')
             $('#guarantee').html('Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '50%') + '</b> chance to be the rate-up character.')
             config.data = characterBanner(promoGuarantee)
             break
 
         case 'weapon event wish':
-            $('#promonotice').append('weapons in place of ' + promoWeapons[0] + ' and ' + promoWeapons[1] + '.<br><br>')
+            $('#promonotice').append('weapons in place of ' + promo.weapons[0] + ' and ' + promo.weapons[1] + '.<br><br>Hover for details!')
             $('#guarantee').html('Your next 5-star in this banner has a <b>' + (promoGuarantee ? '100%' : '75%') + ' </b> chance to be a rate-up weapon.')
             config.data = weaponBanner(promoGuarantee)
             break
 
         default:
             $('#guarantee').html('Your next 5-star could be any of the ones in this banner\'s item pool.')
-            $('#promonotice').html('')
+            $('#promonotice').html('Hover for details!')
             config.data = permanentBanner
     }
-
-    $('#promonotice').append('Hover for details!')
 
     // Voila
     $('#banner').html('Banner: <a href="' + urls[banner] + '" target="_blank">' + banner + '</a>')
@@ -92,7 +96,7 @@ function run(input) {
     window.pieChart.update()
 }
 
-function main() {
+export default function() {
     
     try {
         run($('#input').val())

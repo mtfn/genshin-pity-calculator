@@ -1,7 +1,7 @@
 import $ from 'cash-dom'
 import Chart from 'chart.js'
 import { Values, setBaseRate, showResults, togglePity } from './utils'
-import { promo, urls, isGuaranteed, characterBanner, weaponBanner, permanentBanner } from './banners'
+import { promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner } from './banners'
 import { config } from './pie'
 
 function run(input) {
@@ -86,7 +86,7 @@ function run(input) {
     }
 
     // Voila
-    $('#banner').html('Banner: <a href="' + urls[banner] + '" target="_blank">' + banner + '</a>')
+    $('#banner').html('Banner: <a href="https://genshin-impact.fandom.com/wiki/' + wikiPages[banner] + '" target="_blank">' + banner + '</a>')
     showResults(false)
 
     // Oh yeah, create the chart if it doesn't exist

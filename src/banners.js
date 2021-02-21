@@ -5,10 +5,10 @@ const promo = {
     character: 'Keqing',
     weapons: ['Wolf\'s Gravestone', 'Staff of Homa']
 }
-const urls = {
-    'character event wish': 'https://genshin-impact.fandom.com/wiki/Dance_of_Lanterns',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-23',
-    'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
+const wikiPages = {
+    'character event wish': 'Dance_of_Lanterns',
+    'weapon event wish': 'Epitome_Invocation/2021-02-23',
+    'permanent wish': 'Wanderlust_Invocation'
 }
 
 // Grab colors from array of item names
@@ -171,4 +171,4 @@ const permanentBanner = {
     labels: permanentPool
 }
 
-export {promo, urls, isGuaranteed, characterBanner, weaponBanner, permanentBanner}
+export {promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner}

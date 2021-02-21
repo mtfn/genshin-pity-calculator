@@ -1,0 +1,46 @@
+name: Build and deploy
+
+# Test
+on:
+  push:
+    branches: [webpack]
+
+  # Allow manual activation for when it hits the fan
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+
+    # Refer to: https://github.com/actions/virtual-environments/blob/main/README.md
+    runs-on: ubuntu-latest
+    steps:
+      
+        # Checkout to gh-pages (deploy branch)
+      - name: Checkout deploy branch
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: gh-pages
+
+        # Merge new changes from master but stage, not commit
+      - name: Get new changes from master
+        run: git merge master --no-commit --no-ff
+      
+        # Install deps
+      - name: Install NPM dependencies
+        run: npm install
+
+        # Build JS
+      - name: Bundle with Webpack
+        run: npm run build
+        
+        # Add bundle to staging area and commit
+      - name: Login and commit
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f build/
+          git commit -m "Deploy: `git log -1 --format=%s`"
+      
+      # Push to gh-pages branch on GitHub remote
+      - name: Push to deploy branch
+        run: git push origin gh-pages

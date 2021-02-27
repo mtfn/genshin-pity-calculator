@@ -15,18 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-        # Checkout to gh-pages (deploy branch)
-      - name: Checkout deploy branch
+        # Login and clone
+      - name: Login and clone remote
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git clone https://github.com/forkpoweroutlet/genshin-pity-calculator
           cd genshin-pity-calculator
-          git checkout gh-pages
 
-        # Merge new changes but stage rather than commit
-      - name: Login and get new changes
+        # Checkout and merge new changes but stage rather than commit
+      - name: Get new changes
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout gh-pages
           git pull origin master --no-commit --no-ff --allow-unrelated-histories
       
         # Install deps

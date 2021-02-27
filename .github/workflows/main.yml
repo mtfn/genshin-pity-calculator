@@ -1,9 +1,9 @@
 name: Build and deploy
 
-# Test
+# For every time master changes
 on:
   push:
-    branches: [webpack]
+    branches: [master]
 
   # Allow manual activation for when it hits the fan
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch --all
-          git merge origin/webpack --no-commit --no-ff
+          git merge origin/master --no-commit --no-ff
       
         # Install deps
       - name: Install NPM dependencies
@@ -37,12 +37,9 @@ jobs:
       - name: Bundle with Webpack
         run: npm run build
         
-        # Add bundle to staging area and commit
-      - name: Login and commit
+        # Add bundle to staging area + commit + push and let the page build from there
+      - name: Stage, commit, and push
         run: |
           git add -f build/
           git commit -m "Deploy: `git log -1 --format=%s`"
-      
-      # Push to gh-pages branch on GitHub remote
-      - name: Push to deploy branch
-        run: git push origin gh-pages
+          git push origin gh-pages

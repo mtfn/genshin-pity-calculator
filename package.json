@@ -1,0 +1,28 @@
+{
+  "name": "genshin-pity-calculator",
+  "version": "1.0.0",
+  "description": "Navigate Genshin Impact's gacha system.",
+  "main": "src/script.js",
+  "scripts": {
+    "build": "npx webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forkpoweroutlet/genshin-pity-calculator.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/forkpoweroutlet/genshin-pity-calculator/issues"
+  },
+  "homepage": "https://github.com/forkpoweroutlet/genshin-pity-calculator#readme",
+  "dependencies": {
+    "cash-dom": "^8.1.0",
+    "chart.js": "^2.9.4"
+  },
+  "devDependencies": {
+    "webpack": "^5.23.0",
+    "webpack-cli": "^4.5.0"
+  }
+}

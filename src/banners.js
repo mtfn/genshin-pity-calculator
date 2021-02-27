@@ -1,10 +1,19 @@
+import items from './data/items.json'
+
 // Right now:
-const promoCharacter = 'Keqing'
-const promoWeapons = ['Wolf\'s Gravestone', 'Staff of Homa']
-const urls = {
-    'character event wish': 'https://genshin-impact.fandom.com/wiki/Dance_of_Lanterns',
-    'weapon event wish': 'https://genshin-impact.fandom.com/wiki/Epitome_Invocation/2021-02-23',
-    'permanent wish': 'https://genshin-impact.fandom.com/wiki/Wanderlust_Invocation'
+const promo = {
+    character: 'Keqing',
+    weapons: ['Wolf\'s Gravestone', 'Staff of Homa']
+}
+const wikiPages = {
+    'character event wish': 'Dance_of_Lanterns',
+    'weapon event wish': 'Epitome_Invocation/2021-02-23',
+    'permanent wish': 'Wanderlust_Invocation'
+}
+
+// Grab colors from array of item names
+function getColors(arr) {
+    return arr.map(x => items[x].color)
 }
 
 /**
@@ -69,16 +78,16 @@ function characterBanner(guarantee) {
         return {
             datasets: [{
                 data: [100],
-                backgroundColor: getColors([promoCharacter])
+                backgroundColor: getColors([promo.character])
             }],
-            labels: [promoCharacter]
+            labels: [promo.character]
         }
 
     // 50% to get promo character
     } else {
 
         let eventPool = ['Diluc', 'Jean', 'Mona', 'Qiqi']
-        eventPool.push(promoCharacter)
+        eventPool.push(promo.character)
 
         return {
             datasets: [{
@@ -120,29 +129,29 @@ function weaponBanner(guarantee) {
         return {
             datasets: [{
                 data: [50, 50],
-                backgroundColor: getColors(promoWeapons)
+                backgroundColor: getColors(promo.weapons)
             }],
-            labels: promoWeapons
+            labels: promo.weapons
         }
 
     // 75% chance to get promo weapon
     } else {
 
-        let weapons = itemNames.filter(x => !items[x].isCharacter)
+        let weapons = Object.keys(items).filter(x => !items[x].isCharacter)
         let backgroundColors = getColors(weapons)
 
         // Rearrange weapon pool based on promo weapons (cut promo weapons out of the array and stick them at the end)
-        promoWeapons.forEach(x => {
+        promo.weapons.forEach(x => {
             const index = weapons.indexOf(x)
             if(index > -1) {
                 weapons.splice(index, 1)
                 backgroundColors.splice(index, 1)
             }
         })
-        weapons = weapons.concat(promoWeapons)
-        backgroundColors = backgroundColors.concat(getColors(promoWeapons))
+        weapons = weapons.concat(promo.weapons)
+        backgroundColors = backgroundColors.concat(getColors(promo.weapons))
 
-        let numNotRatedUp = permanentPool.filter(x => !promoWeapons.includes(x) && !items[x].isCharacter).length
+        let numNotRatedUp = permanentPool.filter(x => !promo.weapons.includes(x) && !items[x].isCharacter).length
         return {
             datasets: [{
                 data: (new Array(numNotRatedUp).fill(25/numNotRatedUp)).concat([37.5, 37.5]),
@@ -161,3 +170,5 @@ const permanentBanner = {
     }],
     labels: permanentPool
 }
+
+export {promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner}

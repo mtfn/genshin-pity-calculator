@@ -1,3 +1,5 @@
+import $ from 'cash-dom'
+
 /**
  * Numerical values
  * @param {number} pity Pulls since last 5-star
@@ -16,7 +18,7 @@ function Values(pity, banner) {
     this.welkinmoon = Math.ceil(this.primogems / 150)
 
     for(let val in this) {
-        document.getElementById(val).innerHTML = this[val].toLocaleString('en-US')
+        $('#' + val).html(this[val].toLocaleString('en-US'))
     }
 }
 
@@ -26,8 +28,8 @@ function Values(pity, banner) {
  */
 function setBaseRate(rate) {
     const baseRate = rate.toLocaleString('en-US', {style: 'percent', maximumFractionDigits: 3})
-    document.getElementById('baserate').innerHTML = baseRate
-    document.querySelector('#bar > div').style.width = baseRate
+    $('#baserate').html(baseRate)
+    $('#bar > div').css('width', baseRate)
 }
 
 /**
@@ -35,31 +37,29 @@ function setBaseRate(rate) {
  * @param {boolean} error Whether or not there was an error
  */
 function showResults(error) {
-    document.getElementById('error').style.display = error ? 'block' : 'none'
-    document.getElementById('banner').style.display = error ? 'none' : 'block'
-    document.getElementById('results').style.display = error ? 'none' : 'flex'
-    document.getElementById('status').style.display = error ? 'none' : 'block'
+    $('#error').css('display', error ? 'block' : 'none')
+    $('#banner, #status').css('display', error ? 'none' : 'block')
+    $('#results').css('display', error ? 'none' : 'flex')
 }
 
 /**
  * Toggle between primogem counts for hard and soft pity
  */
 function togglePity() {
-    const pityType = document.getElementById('pitytype')
 
     // soft -> hard, hard -> soft
     const newPityType = ['soft', 'hard'][Math.max(0,
-        ['hard', 'soft'].indexOf(pityType.innerHTML)
+        ['hard', 'soft'].indexOf($('#pitytype').html())
     )]
 
     // Primogems needed to hit hard or soft pity
-    const primos = 160 * parseInt(document.getElementById((
-        'to' + newPityType + 'pity'
-    )).innerHTML)
+    const primos = 160 * parseInt($('#to' + newPityType + 'pity').html())
 
     // Display on page
-    document.getElementById('primogems').innerHTML = primos.toLocaleString('en-US')
-    document.getElementById('commissions').innerHTML = Math.ceil(primos / 60).toString()
-    document.getElementById('welkinmoon').innerHTML = Math.ceil(primos / 150).toString()
-    pityType.innerHTML = newPityType
+    $('#primogems').html(primos.toLocaleString('en-US'))
+    $('#commissions').html(Math.ceil(primos / 60).toString())
+    $('#welkinmoon').html(Math.ceil(primos / 150).toString())
+    $('#pitytype').html(newPityType)
 }
+
+export {Values, setBaseRate, showResults, togglePity}

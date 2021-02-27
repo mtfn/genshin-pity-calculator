@@ -1,0 +1,45 @@
+name: Build and deploy
+
+# For every time master changes
+on:
+  push:
+    branches: [master]
+
+  # Allow manual activation for when it hits the fan
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+
+    # Refer to: https://github.com/actions/virtual-environments/blob/main/README.md
+    runs-on: ubuntu-latest
+    steps:
+      
+        # Checkout to gh-pages (deploy branch)
+      - name: Checkout deploy branch
+        uses: actions/checkout@v2.3.4
+        with:
+          ref: gh-pages
+
+        # Merge new changes but stage rather than commit
+      - name: Login and get new changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch --all
+          git merge origin/master --no-commit --no-ff
+      
+        # Install deps
+      - name: Install NPM dependencies
+        run: npm install
+
+        # Build JS
+      - name: Bundle with Webpack
+        run: npm run build
+        
+        # Add bundle to staging area + commit + push and let the page build from there
+      - name: Stage, commit, and push
+        run: |
+          git add -f build/
+          git commit -m "Deploy: `git log -1 --format=%s`"
+          git push origin gh-pages

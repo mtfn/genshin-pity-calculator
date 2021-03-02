@@ -2,11 +2,11 @@ import items from './data/items.json'
 
 // Right now:
 const promo = {
-    character: 'Keqing',
+    character: 'Hu Tao',
     weapons: ['Wolf\'s Gravestone', 'Staff of Homa']
 }
 const wikiPages = {
-    'character event wish': 'Dance_of_Lanterns',
+    'character event wish': 'Moment_of_Bloom',
     'weapon event wish': 'Epitome_Invocation/2021-02-23',
     'permanent wish': 'Wanderlust_Invocation'
 }
@@ -38,7 +38,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1608681600 + utcOffset, promo: ['albedo']},
                 {start: 1610474400, promo: ['ganyu']},
                 {start: 1612310400 + utcOffset, promo: ['xiao']},
-                {start: 1613584800, promo: ['keqing']}
+                {start: 1613584800, promo: ['keqing']},
+                {start: 1614708000, promo: ['hu tao']}
             ]
         break
         case 'weapon event wish': 

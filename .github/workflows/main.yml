@@ -26,7 +26,8 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull origin master --no-commit --no-ff --allow-unrelated-histories
+          git fetch --all
+          git merge origin/master -X theirs --no-commit --no-ff --allow-unrelated-histories
       
         # Install deps
       - name: Install NPM dependencies

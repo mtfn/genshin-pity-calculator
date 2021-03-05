@@ -1,5 +1,5 @@
-import $ from 'cash-dom'
-import { isCharacter } from './banners'
+const $ = require('cash-dom')
+const { isCharacter } = require('./banners')
 
 function tooltip(tooltip) {
     // Tooltip Element
@@ -75,4 +75,4 @@ const config = {
     }
 }
 
-export { tooltip, config }
+module.exports = { tooltip, config }

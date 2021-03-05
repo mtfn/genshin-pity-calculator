@@ -1,4 +1,4 @@
-import items from './data/items.json'
+const items = require('./data/items.json')
 
 // Right now:
 const promo = {
@@ -184,4 +184,4 @@ const permanentBanner = {
     labels: permanentPool
 }
 
-export {promo, wikiPages, isCharacter, isGuaranteed, characterBanner, weaponBanner, permanentBanner}
+module.exports = { promo, wikiPages, isCharacter, isGuaranteed, characterBanner, weaponBanner, permanentBanner }

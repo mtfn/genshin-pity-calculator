@@ -1,8 +1,8 @@
-import $ from 'cash-dom'
-import Chart from 'chart.js'
-import { Values, setBaseRate, showResults, togglePity } from './utils'
-import { promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner } from './banners'
-import { config } from './pie'
+const $ = require('cash-dom')
+const Chart = require('chart.js')
+const { Values, setBaseRate, showResults, togglePity } = require('./utils')
+const { promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner } = require('./banners')
+const { config } = require('./pie')
 
 function run(input) {
 
@@ -37,6 +37,9 @@ function run(input) {
 
     // Calculate pity based on position in table & page number
     const values = new Values(tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6, banner)
+    for(let id in values) {
+        $('#' + id).html(values[id].toLocaleString('en-US'))
+    }
 
     // Hard pity
     if(values.pity >= values.hardpity - 1) {
@@ -96,7 +99,7 @@ function run(input) {
     window.pieChart.update()
 }
 
-export default function() {
+module.exports = function() {
     
     try {
         run($('#input').val())

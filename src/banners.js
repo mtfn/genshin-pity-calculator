@@ -13,7 +13,24 @@ const wikiPages = {
 
 // Grab colors from array of item names
 function getColors(arr) {
-    return arr.map(x => items[x].color)
+    const allColors = {...items.characters, ...items.weapons}
+    const returnColors = arr.map(x => allColors[x])
+
+    if(returnColors.includes(undefined)) {
+        throw new Error('Invalid item name')
+    }
+
+    return returnColors
+}
+
+function isCharacter(itemName) {
+    const isACharacter = items.characters.hasOwnProperty(itemName)
+
+    if(!isACharacter && !items.weapons.hasOwnProperty(itemName)) {
+        throw new Error('Invalid item name')
+    }
+
+    return isACharacter
 }
 
 /**
@@ -59,13 +76,11 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
     }
    
     const startTimes = banner.map(x => x.start)
-
-    // Which item(s) were rated up during datePulled
-    const promoItems = banner[startTimes.indexOf(
+    const thenRatedUp = banner[startTimes.indexOf(
         startTimes.reduce((acc, cur) => datePulled >= cur ? cur : acc)
     )].promo
 
-    return !promoItems.some(element => itemName.includes(element))
+    return !thenRatedUp.some(element => itemName.includes(element))
 }
 
 /**
@@ -138,25 +153,22 @@ function weaponBanner(guarantee) {
     // 75% chance to get promo weapon
     } else {
 
-        let weapons = Object.keys(items).filter(x => !items[x].isCharacter)
-        let backgroundColors = getColors(weapons)
+        let weapons = Object.keys(items.weapons)
 
-        // Rearrange weapon pool based on promo weapons (cut promo weapons out of the array and stick them at the end)
+        // Cut promo weapons out of array and stick them at the end
         promo.weapons.forEach(x => {
             const index = weapons.indexOf(x)
             if(index > -1) {
                 weapons.splice(index, 1)
-                backgroundColors.splice(index, 1)
             }
         })
         weapons = weapons.concat(promo.weapons)
-        backgroundColors = backgroundColors.concat(getColors(promo.weapons))
 
-        let numNotRatedUp = permanentPool.filter(x => !promo.weapons.includes(x) && !items[x].isCharacter).length
+        const numNotRatedUp = permanentPool.filter(x => !promo.weapons.includes(x) && !isCharacter(x)).length
         return {
             datasets: [{
                 data: (new Array(numNotRatedUp).fill(25/numNotRatedUp)).concat([37.5, 37.5]),
-                backgroundColor: backgroundColors
+                backgroundColor: getColors(weapons)
             }],
             labels: weapons
         }
@@ -172,4 +184,4 @@ const permanentBanner = {
     labels: permanentPool
 }
 
-export {promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner}
+export {promo, wikiPages, isCharacter, isGuaranteed, characterBanner, weaponBanner, permanentBanner}

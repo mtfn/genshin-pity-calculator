@@ -27,11 +27,15 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch --all
-          git merge origin/master -X theirs --squash --no-commit --no-ff --allow-unrelated-histories
+          git merge origin/master -X theirs --no-commit --no-ff --allow-unrelated-histories
       
         # Install deps
       - name: Install NPM dependencies
         run: npm install
+
+        # Run tests
+      - name: Run unit tests with Jest
+        run: npm run test
 
         # Build JS
       - name: Bundle with Webpack

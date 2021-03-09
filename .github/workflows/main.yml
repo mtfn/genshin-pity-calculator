@@ -33,6 +33,10 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
+        # Run tests
+      - name: Run unit tests with Jest
+        run: npm run test
+
         # Build JS
       - name: Bundle with Webpack
         run: npm run build
@@ -41,5 +45,5 @@ jobs:
       - name: Stage, commit, and push
         run: |
           git add -f build/
-          git commit -m "Deploy: `git log -1 --format=%s`"
+          git commit -m "Deploy `git log -1 origin/master --format="%an@%H ('%s')"`"
           git push origin gh-pages

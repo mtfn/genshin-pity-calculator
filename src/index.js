@@ -1,8 +1,8 @@
-import $ from 'cash-dom'
-import Chart from 'chart.js'
-import { togglePity } from './utils'
-import main from './script'
-import { tooltip } from './pie'
+const $ = require('cash-dom')
+const Chart = require('chart.js')
+const { togglePity } = require('./utils')
+const main = require('./script')
+const { tooltip } = require('./pie')
 
 const utcOffset = new Date().getTimezoneOffset() * -60
 $('#region').val(

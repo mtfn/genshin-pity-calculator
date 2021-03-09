@@ -1,4 +1,4 @@
-import $ from 'cash-dom'
+const $ = require('cash-dom')
 
 /**
  * Numerical values
@@ -17,9 +17,6 @@ function Values(pity, banner) {
     this.commissions = Math.ceil(this.primogems / 60)
     this.welkinmoon = Math.ceil(this.primogems / 150)
 
-    for(let val in this) {
-        $('#' + val).html(this[val].toLocaleString('en-US'))
-    }
 }
 
 /**
@@ -62,4 +59,4 @@ function togglePity() {
     $('#pitytype').html(newPityType)
 }
 
-export {Values, setBaseRate, showResults, togglePity}
+module.exports = { Values, setBaseRate, showResults, togglePity }

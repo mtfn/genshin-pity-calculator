@@ -1,7 +1,9 @@
 # Genshin Impact Pity Calculator
+<div align="center">
+  <img src="https://gyazo.com/161d44ce5ed82d042c3b9242a6d3999e.gif">
+</div>
 
 ## Usage ([Try on GitHub Pages!](https://forkpoweroutlet.github.io/genshin-pity-calculator/))
-![Usage GIF](https://gyazo.com/161d44ce5ed82d042c3b9242a6d3999e.gif)
 1. Enter the wish screen in Genshin Impact (default keybind: `F3`)
 2. Select History at the bottom (located next to Details). You should see a 6x3 table with your most recent wishes.
 3. Navigate with the arrows at the bottom until you see your most recent 5-star character or weapon. Alternatively, go to your first few wishes if you have yet to pull a 5-star in that banner.

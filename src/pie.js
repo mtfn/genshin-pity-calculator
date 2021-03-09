@@ -1,5 +1,5 @@
-import $ from 'cash-dom'
-import items from './data/items.json'
+const $ = require('cash-dom')
+const { isCharacter } = require('./banners')
 
 function tooltip(tooltip) {
     // Tooltip Element
@@ -22,7 +22,7 @@ function tooltip(tooltip) {
             item = item.substring(0, item.lastIndexOf(' ') - 1)
             let image = item.replace(/ /g, '_') + '.png'
 
-            innerHtml += '<tr><td>' + '<img src="https://rerollcdn.com/GENSHIN/' + (items[item].isCharacter ? 'Characters' : 'Weapon/NEW')
+            innerHtml += '<tr><td>' + '<img src="https://rerollcdn.com/GENSHIN/' + (isCharacter(item) ? 'Characters' : 'Weapon/NEW')
                 + '/' + image + '" onerror="this.onerror=null; this.src=\'./assets/' + image + '\'">' + '<p>' + body + '%</p></td></tr>'
         })
         innerHtml += '</tbody>'
@@ -75,4 +75,4 @@ const config = {
     }
 }
 
-export { tooltip, config }
+module.exports = { tooltip, config }

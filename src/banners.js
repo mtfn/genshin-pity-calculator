@@ -102,12 +102,12 @@ function characterBanner(guarantee) {
     // 50% to get promo character
     } else {
 
-        let eventPool = ['Diluc', 'Jean', 'Mona', 'Qiqi']
+        let eventPool = ['Diluc', 'Jean', 'Keqing', 'Mona', 'Qiqi']
         eventPool.push(promo.character)
 
         return {
             datasets: [{
-                data: [12.5, 12.5, 12.5, 12.5, 50],
+                data: [10, 10, 10, 10, 10, 50],
                 backgroundColor: getColors(eventPool)
             }],
             labels: eventPool

@@ -2,12 +2,12 @@ const items = require('./data/items.json')
 
 // Right now:
 const promo = {
-    character: 'Hu Tao',
-    weapons: ['Wolf\'s Gravestone', 'Staff of Homa']
+    character: 'Venti',
+    weapons: ['Elegy for the End', 'Skyward Blade']
 }
 const wikiPages = {
-    'character event wish': 'Moment_of_Bloom',
-    'weapon event wish': 'Epitome_Invocation/2021-02-23',
+    'character event wish': 'Ballad_in_Goblets/2021-03-17',
+    'weapon event wish': 'Epitome_Invocation/2021-03-17',
     'permanent wish': 'Wanderlust_Invocation'
 }
 

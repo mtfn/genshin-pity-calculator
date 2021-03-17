@@ -2,12 +2,12 @@ const items = require('./data/items.json')
 
 // Right now:
 const promo = {
-    character: 'Hu Tao',
-    weapons: ['Wolf\'s Gravestone', 'Staff of Homa']
+    character: 'Venti',
+    weapons: ['Elegy for the End', 'Skyward Blade']
 }
 const wikiPages = {
-    'character event wish': 'Moment_of_Bloom',
-    'weapon event wish': 'Epitome_Invocation/2021-02-23',
+    'character event wish': 'Ballad_in_Goblets/2021-03-17',
+    'weapon event wish': 'Epitome_Invocation/2021-03-17',
     'permanent wish': 'Wanderlust_Invocation'
 }
 
@@ -56,7 +56,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1610474400, promo: ['ganyu']},
                 {start: 1612310400 + utcOffset, promo: ['xiao']},
                 {start: 1613584800, promo: ['keqing']},
-                {start: 1614708000, promo: ['hu tao']}
+                {start: 1614708000, promo: ['hu tao']},
+                {start: 1615939200 + utcOffset, promo: ['venti']}
             ]
         break
         case 'weapon event wish': 
@@ -68,7 +69,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1608681600 + utcOffset, promo: ['skyward atlas', 'summit shaper']},
                 {start: 1610474400, promo: ['amos\' bow', 'skyward pride']},
                 {start: 1612310400 + utcOffset, promo: ['primordial jade winged-spear', 'primordial jade cutter']},
-                {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']}
+                {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']},
+                {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']}
             ]
         break
         default:

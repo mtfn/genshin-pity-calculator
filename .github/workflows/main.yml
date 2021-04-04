@@ -14,7 +14,7 @@ jobs:
     # Refer to: https://github.com/actions/virtual-environments/blob/main/README.md
     runs-on: ubuntu-latest
     steps:
-      
+
         # Checkout to gh-pages (deploy branch)
       - name: Checkout deploy branch
         uses: actions/checkout@v2.3.4
@@ -26,9 +26,9 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch --all
-          git merge origin/master -X theirs --no-commit --no-ff --allow-unrelated-histories
-      
+          git fetch origin master
+          git merge origin/master -X theirs --squash --allow-unrelated-histories
+
         # Install deps
       - name: Install NPM dependencies
         run: npm install
@@ -40,10 +40,10 @@ jobs:
         # Build JS
       - name: Bundle with Webpack
         run: npm run build
-        
+
         # Add bundle to staging area + commit + push and let the page build from there
       - name: Stage, commit, and push
         run: |
           git add -f build/
-          git commit -m "Deploy `git log -1 origin/master --format="%an@%H ('%s')"`"
+          git commit -m "Deploy `git log -1 origin/master --format="%H: %s"`"
           git push origin gh-pages

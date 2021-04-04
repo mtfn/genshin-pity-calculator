@@ -85,7 +85,7 @@ textarea {
 
 /* Disclaimer */
 small {
-    margin-top: 0px;
+    margin-top: 0;
     text-align: center;
 }
 small > p {
@@ -139,8 +139,8 @@ small > p {
     transform: translate(-50%, 0);
 }
 td > p {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 img {
     display: inline-block;

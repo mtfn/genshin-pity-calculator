@@ -27,6 +27,7 @@ function run(input) {
         // Position in table (0-5)
         tableRow = Math.floor((fiveStarPos - 5) / 3)
 
+        // UNIX time
         const timePulled = new Date(data[fiveStarPos + 1].trim() + '+0000').getTime() / 1000
         if(isNaN(timePulled)) {
             throw RangeError('Invalid date')
@@ -34,14 +35,17 @@ function run(input) {
 
         promoGuarantee = isGuaranteed(
             data[fiveStarPos], // Table row
-            timePulled, // Date pulled (UNIX time)
+            timePulled,
             banner, // Banner type
             parseInt($('#region').val) // Region offset (server time)
         )
     }
 
     // Calculate pity based on position in table & page number
-    const values = new Values(tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6, banner)
+    const tableNumber = parseInt(data[data.length - 1]) - 1 || 0
+    const pity = tableRow + tableNumber * 6
+    
+    const values = new Values(pity, banner)
     for(let id in values) {
         $('#' + id).html(values[id].toLocaleString('en-US'))
     }

@@ -27,9 +27,14 @@ function run(input) {
         // Position in table (0-5)
         tableRow = Math.floor((fiveStarPos - 5) / 3)
 
+        const timePulled = new Date(data[fiveStarPos + 1].trim() + '+0000').getTime() / 1000
+        if(isNaN(timePulled)) {
+            throw RangeError('Invalid date')
+        }
+
         promoGuarantee = isGuaranteed(
             data[fiveStarPos], // Table row
-            new Date(data[fiveStarPos + 1].trim() + '+0000').getTime() / 1000, // Date pulled (UNIX time)
+            timePulled, // Date pulled (UNIX time)
             banner, // Banner type
             parseInt($('#region').val) // Region offset (server time)
         )

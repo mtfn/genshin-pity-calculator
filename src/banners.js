@@ -2,8 +2,8 @@ const items = require('./data/items.json')
 
 // Right now:
 const promo = {
-    character: 'Venti',
-    weapons: ['Elegy for the End', 'Skyward Blade']
+    character: 'Tartaglia',
+    weapons: ['Skyward Harp', 'Lost Prayer to the Sacred Winds']
 }
 const wikiPages = {
     'character event wish': 'Ballad_in_Goblets/2021-03-17',
@@ -57,7 +57,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1612310400 + utcOffset, promo: ['xiao']},
                 {start: 1613584800, promo: ['keqing']},
                 {start: 1614708000, promo: ['hu tao']},
-                {start: 1615939200 + utcOffset, promo: ['venti']}
+                {start: 1615939200 + utcOffset, promo: ['venti']},
+                {start: 1617732000, promo: ['tartaglia']}
             ]
         break
         case 'weapon event wish': 
@@ -70,7 +71,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1610474400, promo: ['amos\' bow', 'skyward pride']},
                 {start: 1612310400 + utcOffset, promo: ['primordial jade winged-spear', 'primordial jade cutter']},
                 {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']},
-                {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']}
+                {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']},
+                {start: 1617732000, promo: ['skyward harp', 'lost prayer to the sacred winds']}
             ]
         break
         default:

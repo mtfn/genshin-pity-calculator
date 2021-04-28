@@ -2,12 +2,12 @@ const items = require('./data/items.json')
 
 // Right now:
 const promo = {
-    character: 'Tartaglia',
-    weapons: ['Skyward Harp', 'Lost Prayer to the Sacred Winds']
+    character: 'Zhongli',
+    weapons: ['Summit Shaper', 'Memory of Dust']
 }
 const wikiPages = {
-    'character event wish': 'Ballad_in_Goblets/2021-03-17',
-    'weapon event wish': 'Epitome_Invocation/2021-03-17',
+    'character event wish': 'Gentry_of_Hermitage/2021-04-28',
+    'weapon event wish': 'Epitome_Invocation/2021-04-28',
     'permanent wish': 'Wanderlust_Invocation'
 }
 
@@ -58,7 +58,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1613584800, promo: ['keqing']},
                 {start: 1614708000, promo: ['hu tao']},
                 {start: 1615939200 + utcOffset, promo: ['venti']},
-                {start: 1617732000, promo: ['tartaglia']}
+                {start: 1617732000, promo: ['tartaglia']},
+                {start: 1619568000 + utcOffset, promo: ['zhongli']}
             ]
         break
         case 'weapon event wish': 
@@ -72,7 +73,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1612310400 + utcOffset, promo: ['primordial jade winged-spear', 'primordial jade cutter']},
                 {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']},
                 {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']},
-                {start: 1617732000, promo: ['skyward harp', 'lost prayer to the sacred winds']}
+                {start: 1617732000, promo: ['skyward harp', 'lost prayer to the sacred winds']},
+                {start: 1619568000 + utcOffset, promo: ['summit shaper', 'memory of dust']}
             ]
         break
         default:

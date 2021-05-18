@@ -2,12 +2,12 @@ const items = require('./data/items.json')
 
 // Right now:
 const promo = {
-    character: 'Zhongli',
-    weapons: ['Summit Shaper', 'Memory of Dust']
+    character: 'Eula',
+    weapons: ['Song of Broken Pines', 'Aquila Favonia']
 }
 const wikiPages = {
-    'character event wish': 'Gentry_of_Hermitage/2021-04-28',
-    'weapon event wish': 'Epitome_Invocation/2021-04-28',
+    'character event wish': 'Born_of_Ocean_Swell',
+    'weapon event wish': 'Epitome_Invocation/2021-05-18',
     'permanent wish': 'Wanderlust_Invocation'
 }
 
@@ -59,7 +59,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1614708000, promo: ['hu tao']},
                 {start: 1615939200 + utcOffset, promo: ['venti']},
                 {start: 1617732000, promo: ['tartaglia']},
-                {start: 1619568000 + utcOffset, promo: ['zhongli']}
+                {start: 1619568000 + utcOffset, promo: ['zhongli']},
+                {start: 1621360800, promo: ['eula']}
             ]
         break
         case 'weapon event wish': 
@@ -74,7 +75,8 @@ function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
                 {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']},
                 {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']},
                 {start: 1617732000, promo: ['skyward harp', 'lost prayer to the sacred winds']},
-                {start: 1619568000 + utcOffset, promo: ['summit shaper', 'memory of dust']}
+                {start: 1619568000 + utcOffset, promo: ['summit shaper', 'memory of dust']},
+                {start: 1621360800, promo: ['song of broken pines', 'aquila favonia']}
             ]
         break
         default:

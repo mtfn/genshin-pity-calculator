@@ -1,13 +1,14 @@
 const items = require('./data/items.json')
+const history = require('./data/history.json')
 
 // Right now:
 const promo = {
-    character: 'Eula',
-    weapons: ['Song of Broken Pines', 'Aquila Favonia']
+    character: 'Klee',
+    weapons: ['Lost Prayer to the Sacred Winds', 'Skyward Pride']
 }
 const wikiPages = {
-    'character event wish': 'Born_of_Ocean_Swell',
-    'weapon event wish': 'Epitome_Invocation/2021-05-18',
+    'character event wish': 'Sparkling_Steps/2021-06-09',
+    'weapon event wish': 'Epitome_Invocation/2021-06-09',
     'permanent wish': 'Wanderlust_Invocation'
 }
 
@@ -19,7 +20,7 @@ function getColors(arr) {
     if(returnColors.includes(undefined)) {
         throw new Error('Invalid item name')
     }
-
+    
     return returnColors
 }
 
@@ -44,46 +45,20 @@ function isCharacter(itemName) {
  */
 function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
 
-    let banner = []
-    switch(bannerName) {
-        case 'character event wish':
-            banner = [
-                {start: 1601251200, promo: ['venti']},
-                {start: 1603216800, promo: ['klee']},
-                {start: 1605052800 + utcOffset, promo: ['tartaglia']},
-                {start: 1606845600, promo: ['zhongli']},
-                {start: 1608681600 + utcOffset, promo: ['albedo']},
-                {start: 1610474400, promo: ['ganyu']},
-                {start: 1612310400 + utcOffset, promo: ['xiao']},
-                {start: 1613584800, promo: ['keqing']},
-                {start: 1614708000, promo: ['hu tao']},
-                {start: 1615939200 + utcOffset, promo: ['venti']},
-                {start: 1617732000, promo: ['tartaglia']},
-                {start: 1619568000 + utcOffset, promo: ['zhongli']},
-                {start: 1621360800, promo: ['eula']}
-            ]
-        break
-        case 'weapon event wish': 
-            banner = [
-                {start: 1601251200, promo: ['amos\' bow', 'aquila favonia']},
-                {start: 1603216800, promo: ['lost prayer to the sacred winds', 'wolf\'s gravestone']},
-                {start: 1605052800 + utcOffset, promo: ['skyward harp', 'memory of dust']},
-                {start: 1606845600, promo: ['vortex vanquisher', 'the unforged']},
-                {start: 1608681600 + utcOffset, promo: ['skyward atlas', 'summit shaper']},
-                {start: 1610474400, promo: ['amos\' bow', 'skyward pride']},
-                {start: 1612310400 + utcOffset, promo: ['primordial jade winged-spear', 'primordial jade cutter']},
-                {start: 1614103200, promo: ['wolf\'s gravestone', 'staff of homa']},
-                {start: 1615939200 + utcOffset, promo: ['elegy for the end', 'skyward blade']},
-                {start: 1617732000, promo: ['skyward harp', 'lost prayer to the sacred winds']},
-                {start: 1619568000 + utcOffset, promo: ['summit shaper', 'memory of dust']},
-                {start: 1621360800, promo: ['song of broken pines', 'aquila favonia']}
-            ]
-        break
-        default:
-            return false
+    const banner = history[bannerName]
+    if(banner === undefined) {
+        return false
     }
-   
-    const startTimes = banner.map(x => x.start)
+
+    // Apply UTC offset where necessary
+    const startTimes = banner.map((x, i) => {
+        if(i % 2 === 0) {
+            return x.start + utcOffset
+        } else {
+            return x.start
+        }
+    })
+
     const thenRatedUp = banner[startTimes.indexOf(
         startTimes.reduce((acc, cur) => datePulled >= cur ? cur : acc)
     )].promo

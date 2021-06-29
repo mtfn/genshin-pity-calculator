@@ -13,7 +13,8 @@
         {"start": 1617732000, "promo": ["tartaglia"]},
         {"start": 1619568000, "promo": ["zhongli"]},
         {"start": 1621360800, "promo": ["eula"]},
-        {"start": 1623222000, "promo": ["klee"]}
+        {"start": 1623222000, "promo": ["klee"]},
+        {"start": 1624989600, "promo": ["kaedehara kazuha"]}
     ],
     "weapon event wish": [
         {"start": 1601251200, "promo": ["amos' bow", "aquila favonia"]},
@@ -28,6 +29,7 @@
         {"start": 1617732000, "promo": ["skyward harp", "lost prayer to the sacred winds"]},
         {"start": 1619568000, "promo": ["summit shaper", "memory of dust"]},
         {"start": 1621360800, "promo": ["song of broken pines", "aquila favonia"]},
-        {"start": 1623222000, "promo": ["lost prayer to the sacred winds", "skyward pride"]}
+        {"start": 1623222000, "promo": ["lost prayer to the sacred winds", "skyward pride"]},
+        {"start": 1624989600, "promo": ["skyward atlas", "freedom-sworn"]}
     ]
 }

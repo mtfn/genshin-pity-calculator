@@ -3,12 +3,12 @@ const history = require('./data/history.json')
 
 // Right now:
 const promo = {
-    character: 'Klee',
-    weapons: ['Lost Prayer to the Sacred Winds', 'Skyward Pride']
+    character: 'Kazuha',
+    weapons: ['Skyward Atlas', 'Freedom-Sworn']
 }
 const wikiPages = {
-    'character event wish': 'Sparkling_Steps/2021-06-09',
-    'weapon event wish': 'Epitome_Invocation/2021-06-09',
+    'character event wish': 'Leaves_in_the_Wind/2021-06-29',
+    'weapon event wish': 'Epitome Invocation/2021-06-29',
     'permanent wish': 'Wanderlust_Invocation'
 }
 

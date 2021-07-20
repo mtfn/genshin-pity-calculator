@@ -1,15 +1,9 @@
+const current = require('./data/promo.json')
 const items = require('./data/items.json')
 
 // Right now:
-const promo = {
-    character: 'Kazuha',
-    weapons: ['Skyward Atlas', 'Freedom-Sworn']
-}
-const wikiPages = {
-    'character event wish': 'Leaves_in_the_Wind/2021-06-29',
-    'weapon event wish': 'Epitome Invocation/2021-06-29',
-    'permanent wish': 'Wanderlust_Invocation'
-}
+const promo = current.promo
+const wikiPages = current.wiki
 
 // Grab colors from array of item names
 function getColors(arr) {

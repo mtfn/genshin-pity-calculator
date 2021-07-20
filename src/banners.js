@@ -1,5 +1,4 @@
 const items = require('./data/items.json')
-const history = require('./data/history.json')
 
 // Right now:
 const promo = {
@@ -32,38 +31,6 @@ function isCharacter(itemName) {
     }
 
     return isACharacter
-}
-
-/**
- * Determine whether the next 5-star will be guaranteed a promotional item
- * @param {string} itemName Table row containing 5-star name
- * @param {number} datePulled Date item pulled in UNIX time
- * @param {string} bannerName 'character event wish', 'weapon event wish', or 'permanent wish'
- * @param {number} utcOffset Offset from UTC (-18000 for NA, 3600 for EU, 28800 for CN)
- * 
- * @returns {boolean} Whether the next item is guaranteed to be a promotional item
- */
-function isGuaranteed(itemName, datePulled, bannerName, utcOffset) {
-
-    const banner = history[bannerName]
-    if(banner === undefined) {
-        return false
-    }
-
-    // Apply UTC offset where necessary
-    const startTimes = banner.map((x, i) => {
-        if(i % 2 === 0) {
-            return x.start + utcOffset
-        } else {
-            return x.start
-        }
-    })
-
-    const thenRatedUp = banner[startTimes.indexOf(
-        startTimes.reduce((acc, cur) => datePulled >= cur ? cur : acc)
-    )].promo
-
-    return !thenRatedUp.some(element => itemName.includes(element))
 }
 
 /**
@@ -167,4 +134,4 @@ const permanentBanner = {
     labels: permanentPool
 }
 
-module.exports = { promo, wikiPages, isCharacter, isGuaranteed, characterBanner, weaponBanner, permanentBanner }
+module.exports = { promo, wikiPages, isCharacter, characterBanner, weaponBanner, permanentBanner }

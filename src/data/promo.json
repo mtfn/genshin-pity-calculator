@@ -1,12 +1,12 @@
 {
     "promo": {
-        "character": "Kazuha",
-        "weapons": ["Skyward Atlas", "Freedom-Sworn"]
+        "character": ["Ayaka"],
+        "weapons": ["Mistsplitter Reforged", "Skyward Spine"]
     },
 
     "wiki": {
-        "character event wish": "Leaves_in_the_Wind/2021-06-29",
-        "weapon event wish": "Epitome Invocation/2021-06-29",
+        "character event wish": "The_Heron's_Court/2021-07-21",
+        "weapon event wish": "Epitome_Invocation/2021-07-21",
         "permanent wish": "Wanderlust_Invocation"
     }
 }

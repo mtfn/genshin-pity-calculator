@@ -14,7 +14,8 @@
         {"start": 1619568000, "promo": ["zhongli"]},
         {"start": 1621360800, "promo": ["eula"]},
         {"start": 1623222000, "promo": ["klee"]},
-        {"start": 1624989600, "promo": ["kaedehara kazuha"]}
+        {"start": 1624989600, "promo": ["kaedehara kazuha"]},
+        {"start": 1626825600, "promo": ["kamisato ayaka"]}
     ],
     "weapon event wish": [
         {"start": 1601251200, "promo": ["amos' bow", "aquila favonia"]},
@@ -30,6 +31,7 @@
         {"start": 1619568000, "promo": ["summit shaper", "memory of dust"]},
         {"start": 1621360800, "promo": ["song of broken pines", "aquila favonia"]},
         {"start": 1623222000, "promo": ["lost prayer to the sacred winds", "skyward pride"]},
-        {"start": 1624989600, "promo": ["skyward atlas", "freedom-sworn"]}
+        {"start": 1624989600, "promo": ["skyward atlas", "freedom-sworn"]},
+        {"start": 1626825600, "promo": ["mistsplitter reforged", "skyward spine"]}
     ]
 }

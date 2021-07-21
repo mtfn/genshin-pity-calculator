@@ -1,42 +1,18 @@
 const $ = require('cash-dom')
 const Chart = require('chart.js')
+const Calculation = require('./calc')
 const { Values, setBaseRate, showResults, togglePity } = require('./utils')
-const { promo, wikiPages, isGuaranteed, characterBanner, weaponBanner, permanentBanner } = require('./banners')
+const { promo, wikiPages, characterBanner, weaponBanner, permanentBanner } = require('./banners')
 const { config } = require('./pie')
 
 function run(input) {
 
-    // Lowercase -> Array, split line by line
-    const data = input.toLowerCase().split(/[\r\n]+/g)
-
-    // Identify banner (default to permanent banner)
-    data[1] = data[1].trim()
-    let banner = 'permanent wish'
-    if(['character event wish', 'weapon event wish'].includes(data[1])) {
-        banner = data[1]
-    }
-
-    // Help for pity detecting and guarantee
-    let tableRow = Math.floor((data.length - 5) / 3)
-    let promoGuarantee = false
-
-    // Index in data of first 5-star was found in (might be -1 if there isn't one)
-    const fiveStarPos = data.findIndex(x => x.includes('5-star'))
-    if(fiveStarPos >= 0) {
-
-        // Position in table (0-5)
-        tableRow = Math.floor((fiveStarPos - 5) / 3)
-
-        promoGuarantee = isGuaranteed(
-            data[fiveStarPos], // Table row
-            new Date(data[fiveStarPos + 1].trim() + '+0000').getTime() / 1000, // Date pulled (UNIX time)
-            banner, // Banner type
-            parseInt($('#region').val) // Region offset (server time)
-        )
-    }
+    const calc = new Calculation(input, $('#region').val().toString())
+    const banner = calc.getBanner()
+    const promoGuarantee = calc.isGuaranteed()
 
     // Calculate pity based on position in table & page number
-    const values = new Values(tableRow + (parseInt(data[data.length - 1]) - 1 || 0) * 6, banner)
+    const values = new Values(calc.getPity(), banner)
     for(let id in values) {
         $('#' + id).html(values[id].toLocaleString('en-US'))
     }
@@ -106,6 +82,7 @@ module.exports = function() {
     } catch(error) {
 
         // Show error message, hide other stuff
+        console.error(error)
         showResults(true)
     }
 }

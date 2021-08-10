@@ -1,12 +1,12 @@
 {
     "promo": {
-        "character": ["Ayaka"],
-        "weapons": ["Mistsplitter Reforged", "Skyward Spine"]
+        "character": ["Yoimiya"],
+        "weapons": ["Thundering Pulse", "Skyward Blade"]
     },
 
     "wiki": {
-        "character event wish": "The_Heron's_Court/2021-07-21",
-        "weapon event wish": "Epitome_Invocation/2021-07-21",
+        "character event wish": "Tapestry_of_Golden_Flames/2021-08-10",
+        "weapon event wish": "Epitome_Invocation/2021-08-10",
         "permanent wish": "Wanderlust_Invocation"
     }
 }

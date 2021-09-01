@@ -5,12 +5,13 @@
       "Keqing": "#9e93aa",
       "Mona": "#423247",
       "Qiqi": "#201b3f",
-      "Yoimiya": "#9d352d"
+      "Raiden Shogun": "#5f43ac"
     },
   
     "weapons": {
       "Amos' Bow": "#c9c3d9",
       "Aquila Favonia": "#d7e2dd",
+      "Engulfing Lightning": "#c5adea",
       "Lost Prayer to the Sacred Winds": "#9db3be",
       "Primordial Jade Winged-Spear": "#4f503a",
       "Skyward Atlas": "#d9dbd6",
@@ -18,6 +19,7 @@
       "Skyward Harp": "#d7e2dd",
       "Skyward Pride": "#4bd7de",
       "Skyward Spine": "#e8d3c0",
+      "The Unforged": "#ab9d82",
       "Thundering Pulse": "#c980ef",
       "Wolf's Gravestone": "#2e211f"
     }

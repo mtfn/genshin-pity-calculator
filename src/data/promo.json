@@ -1,12 +1,12 @@
 {
     "promo": {
-        "character": ["Yoimiya"],
-        "weapons": ["Thundering Pulse", "Skyward Blade"]
+        "character": ["Raiden Shogun"],
+        "weapons": ["The Unforged", "Engulfing Lightning"]
     },
 
     "wiki": {
-        "character event wish": "Tapestry_of_Golden_Flames/2021-08-10",
-        "weapon event wish": "Epitome_Invocation/2021-08-10",
+        "character event wish": "Reign_of_Serenity/2021-09-01",
+        "weapon event wish": "Epitome_Invocation/2021-09-01",
         "permanent wish": "Wanderlust_Invocation"
     }
 }

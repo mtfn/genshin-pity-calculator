@@ -17,7 +17,9 @@
         {"start": 1624989600, "promo": ["kaedehara kazuha"]},
         {"start": 1626825600, "promo": ["kamisato ayaka"]},
         {"start": 1628618400, "promo": ["yoimiya"]},
-        {"start": 1630454400, "promo": ["raiden shogun"]}
+        {"start": 1630454400, "promo": ["raiden shogun"]},
+        {"start": 1632247200, "promo": ["sangonomiya kokomi"]},
+        {"start": 1634083200, "promo": ["tartaglia"]}
     ],
     "weapon event wish": [
         {"start": 1601251200, "promo": ["amos' bow", "aquila favonia"]},
@@ -36,6 +38,8 @@
         {"start": 1624989600, "promo": ["skyward atlas", "freedom-sworn"]},
         {"start": 1626825600, "promo": ["mistsplitter reforged", "skyward spine"]},
         {"start": 1628618400, "promo": ["thundering pulse", "skyward blade"]},
-        {"start": 1630454400, "promo": ["the unforged", "engulfing lightning"]}
+        {"start": 1630454400, "promo": ["the unforged", "engulfing lightning"]},
+        {"start": 1632247200, "promo": ["primordial jade cutter", "everlasting moonglow"]},
+        {"start": 1634083200, "promo": ["polar star", "memory of dust"]}
     ]
 }

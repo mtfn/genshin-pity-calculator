@@ -1,12 +1,12 @@
 {
     "promo": {
-        "character": ["Raiden Shogun"],
-        "weapons": ["The Unforged", "Engulfing Lightning"]
+        "character": ["Tartaglia"],
+        "weapons": ["Memory of Dust", "Polar Star"]
     },
 
     "wiki": {
-        "character event wish": "Reign_of_Serenity/2021-09-01",
-        "weapon event wish": "Epitome_Invocation/2021-09-01",
+        "character event wish": "Farewell_of_Snezhnaya/2021-10-13",
+        "weapon event wish": "Epitome_Invocation/2021-10-13",
         "permanent wish": "Wanderlust_Invocation"
     }
 }
